@@ -333,7 +333,7 @@ Start with [`CONTRIBUTING.md`](CONTRIBUTING.md), [`docs/catalog-maintenance.md`]
 | Foundation | Package, offline catalogs, transport guardrails, CLI, tests, and example application are present. |
 | API discovery | 2,964 attributed review candidates are preserved; candidates remain separate from accepted records. |
 | Verification workflow | Workflow and 100-lead batch are preserved; independent primary-source review has not started. |
-| Phase 4 | To be scoped only after the Mission 04 recovery snapshot is synchronized. The next work must be bounded, documentary primary-source review of the existing batch; endpoint probes remain out of scope unless provider permission and exact official endpoint documentation are reviewed first. |
+| Phase 4 | A bounded documentary primary-source plan is recorded in [`docs/phase-4-research-plan.md`](docs/phase-4-research-plan.md), prepared only after the Mission 04 recovery snapshot was synchronized. Research has not started; the plan is limited to the existing top-100 batch, with no endpoint calls or automatic acceptance. |
 | Longer-term target | The 500 independently verified API-record goal has **not** been reached; the accepted API catalog currently contains 26 records. |
 
 No candidate is automatically accepted. Do not change a candidate's status without evidence and the separate human decisions required by the verification workflow.
@@ -353,5 +353,6 @@ No candidate is automatically accepted. Do not change a candidate's status witho
 | [Security](docs/security.md) | Network and privacy boundaries |
 | [Third-party notices](docs/third-party-notices.md) | Upstream source attribution and license context |
 | [Phase 3 report](docs/phase-3-verification-report.md) | Actual findings and blockers for the 100-lead batch |
+| [Phase 4 research plan](docs/phase-4-research-plan.md) | Bounded documentary review plan; no candidate research or endpoint tests have started |
 
 For a bug or feature request, use the repository's [issue templates](.github/ISSUE_TEMPLATE/). For a possible security vulnerability, follow [`SECURITY.md`](SECURITY.md) and avoid posting secrets or exploit details in a public issue.

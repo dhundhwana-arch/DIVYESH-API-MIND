@@ -16,6 +16,7 @@ Consequently, Git alone cannot establish when each Phase 1–3 source file was w
 | Phase 2 — API discovery | Source snapshots/revisions and queue `generated_on` metadata are dated 2026-11-12 | Public APIs, API Atlas, and three OpenAPI example imports were preserved as attributed human-review queues; no candidate was promoted | [`PHASE_02_API_DISCOVERY.md`](PHASE_02_API_DISCOVERY.md), [`docs/discovery.md`](../discovery.md) |
 | Phase 3 — verification workflow | Batch ID and batch `generated_on` are dated 2026-11-12 | Evidence/stage/audit/proposal gates implemented; top-100 candidate batch created and structurally validated; zero independent primary-source reviews or candidate probes | [`PHASE_03_VERIFICATION_WORKFLOW.md`](PHASE_03_VERIFICATION_WORKFLOW.md), [`docs/phase-3-verification-report.md`](../phase-3-verification-report.md) |
 | Mission 04 — repository recovery and presentation | Audit and validation pass dated 2026-11-12 | Previously untracked implementation, data, tests, examples, package metadata, documentation, project history, and contribution assets are preserved together on the active branch | [`CURRENT_PROJECT_STATUS.md`](CURRENT_PROJECT_STATUS.md), [`TEST_EVIDENCE.md`](TEST_EVIDENCE.md) |
+| Phase 4 planning checkpoint | After recovery commit `8ae2641fddd72e1675d345f1e1938f4bca88a696` was confirmed on `origin`, 2026-11-12 | Bounded documentary plan for the existing 100-lead batch written; candidate research and endpoint probes have not started | [`phase-4-research-plan.md`](../phase-4-research-plan.md) |
 
 ## Snapshot counts
 
@@ -28,4 +29,4 @@ Counts are snapshot-specific and do not imply current service availability or in
 
 ## Forward boundary
 
-Phase 4 is not represented as started. Documentary research planning may begin only after synchronization of the Mission 04 recovery point or after a specific synchronization blocker is documented. Candidate endpoint probes remain out of scope until reviewed provider permission and exact official endpoint documentation support each proposed request. Candidate statuses must not change without evidence and the required human decision.
+Phase 4 candidate research has not started. The bounded documentary plan in [`../phase-4-research-plan.md`](../phase-4-research-plan.md) was prepared after synchronization of the Mission 04 recovery commit was confirmed. Candidate endpoint probes remain out of scope until reviewed provider permission and exact official endpoint documentation support each proposed request. Candidate statuses must not change without evidence and the required human decision.
