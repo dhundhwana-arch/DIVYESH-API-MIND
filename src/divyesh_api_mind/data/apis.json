@@ -1,0 +1,2154 @@
+{
+  "schema_version": "1.0",
+  "last_updated": "2026-11-12",
+  "status_values": [
+    "FREE_NO_KEY",
+    "FREE_WITH_KEY",
+    "FREE_TIER_LIMITED",
+    "OPEN_SOURCE_SELF_HOSTED",
+    "FREE_DATA_PAID_SERVICE",
+    "PAID",
+    "UNKNOWN"
+  ],
+  "records": [
+    {
+      "id": "openalex",
+      "type": "api",
+      "name": "OpenAlex API",
+      "categories": [
+        "research",
+        "data",
+        "ai"
+      ],
+      "capabilities": [
+        "scholarly search",
+        "works",
+        "authors",
+        "institutions",
+        "citation metadata",
+        "research discovery"
+      ],
+      "summary": "Scholarly metadata graph with works, authors, sources, institutions, topics, and related entities.",
+      "base_url": "https://api.openalex.org",
+      "allowed_hosts": [
+        "api.openalex.org"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/works",
+          "purpose": "List, search, filter, or retrieve works.",
+          "docs_url": "https://help.openalex.org/api/"
+        },
+        {
+          "method": "GET",
+          "path": "/authors/{id}",
+          "purpose": "Retrieve an author entity.",
+          "docs_url": "https://help.openalex.org/api/"
+        }
+      ],
+      "authentication": {
+        "kind": "api_key_query",
+        "required": false,
+        "env_var": "OPENALEX_API_KEY",
+        "parameter": "api_key",
+        "notes": "Basic queries work without a key. The API key is passed as the api_key query parameter; a free key increases the daily budget and enables cursor paging. Keep it in an environment variable because query keys can appear in external infrastructure logs."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "Official docs describe a $0.10/day keyless budget and a $1/day free-key budget; paid plans/prepaid usage apply beyond the included budget. Endpoint operations have different credit costs. This is a budget, not an unlimited quota."
+      },
+      "rate_limits": {
+        "details": "Official docs list 10 requests/second without a key and 30 requests/second with a free key; semantic search has a lower 1 request/second limit. A 429 can mean budget, pace, or new-account pacing; honor Retry-After."
+      },
+      "license": {
+        "service": "OpenAlex API terms apply.",
+        "data": "OpenAlex metadata and snapshot are CC0; daily freshness/sync services and some API operations may be paid.",
+        "notes": "Use data only within the current terms and budget."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "Provider-maintained Python SDK not verified in the sources checked."
+        }
+      ],
+      "privacy": "The provider receives search/filter requests and account usage. Review OpenAlex privacy and terms before sending sensitive queries; this library does not persist prompts or API responses.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Cross-origin browser behavior was not established from the reviewed API pages. The Python client is server-side."
+      },
+      "sources": [
+        {
+          "url": "https://help.openalex.org/api/authentication/",
+          "title": "OpenAlex authentication and rate limits",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://help.openalex.org/api/",
+          "title": "OpenAlex API reference and CC0 data statement",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://help.openalex.org/access/pricing/",
+          "title": "OpenAlex pricing and budgets",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "crossref",
+      "type": "api",
+      "name": "Crossref REST API",
+      "categories": [
+        "research",
+        "data",
+        "development"
+      ],
+      "capabilities": [
+        "DOI lookup",
+        "bibliographic search",
+        "journal metadata",
+        "funder metadata",
+        "research discovery"
+      ],
+      "summary": "Public REST API for Crossref DOI and scholarly registration metadata.",
+      "base_url": "https://api.crossref.org",
+      "allowed_hosts": [
+        "api.crossref.org"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/works",
+          "purpose": "Search/list scholarly works; rows can be 0 for summary-only requests.",
+          "docs_url": "https://api.crossref.org/swagger-ui/index.html"
+        },
+        {
+          "method": "GET",
+          "path": "/works/{doi}",
+          "purpose": "Retrieve a DOI work record.",
+          "docs_url": "https://api.crossref.org/swagger-ui/index.html"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "No key is needed for public metadata reads. Identify applications responsibly and follow Crossref service guidance."
+      },
+      "free_status": "FREE_NO_KEY",
+      "quota": {
+        "details": "Public metadata API; no numeric monetary quota was established in the reviewed reference. A 403 or 429 means access was blocked; do not infer unlimited use."
+      },
+      "rate_limits": {
+        "details": "No numeric request rate is asserted here. Crossref documents 403/429 handling; check its current service guidance and response headers before bulk collection."
+      },
+      "license": {
+        "service": "Crossref API terms and usage guidance apply.",
+        "data": "Crossref-generated metadata is CC0; abstracts may remain copyrighted by publishers or authors.",
+        "notes": "Metadata availability does not grant rights to full-text content."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "Provider-maintained Python SDK not verified in the sources checked."
+        }
+      ],
+      "privacy": "Requests may contain search terms and an optional contact address. Avoid personal or confidential query strings; no request data is stored by this library.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS policy was not verified from the reviewed API reference."
+      },
+      "sources": [
+        {
+          "url": "https://api.crossref.org/swagger-ui/index.html",
+          "title": "Crossref REST API reference",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+          "title": "Crossref REST API documentation",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "arxiv",
+      "type": "api",
+      "name": "arXiv API",
+      "categories": [
+        "research",
+        "science",
+        "education",
+        "math"
+      ],
+      "capabilities": [
+        "preprint search",
+        "paper metadata",
+        "Atom feeds",
+        "physics",
+        "mathematics",
+        "computer science"
+      ],
+      "summary": "Public HTTP API for searching arXiv records and retrieving Atom metadata.",
+      "base_url": "https://export.arxiv.org/api",
+      "allowed_hosts": [
+        "export.arxiv.org"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/query",
+          "purpose": "Search preprint metadata; response format is Atom 1.0 XML.",
+          "docs_url": "https://info.arxiv.org/help/api/basics.html"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "No key required for public API access."
+      },
+      "free_status": "FREE_NO_KEY",
+      "quota": {
+        "details": "Public API access; commercial projects are asked to review the interoperability guidance. No monetary quota was stated in the reviewed page."
+      },
+      "rate_limits": {
+        "details": "Legacy arXiv API: at most one request every three seconds and one connection at a time across all machines under your control. Do not evade the limit."
+      },
+      "license": {
+        "service": "arXiv API Terms of Use and acknowledgement requirements apply.",
+        "data": "Paper metadata is accessible, but paper full-text rights vary by submission; do not redistribute PDFs without permission or a permissive license.",
+        "notes": "Do not imply arXiv endorsement; commercial projects should review its guidance."
+      },
+      "sdk": [
+        {
+          "name": "feedparser",
+          "status": "Third-party Python parser named by arXiv; not an arXiv-maintained SDK.",
+          "url": "https://github.com/kurtmckee/feedparser"
+        }
+      ],
+      "privacy": "Queries are sent to arXiv. Do not include confidential content; the API is for public scholarly search.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS behavior was not verified; use server-side requests unless the current provider docs confirm otherwise."
+      },
+      "sources": [
+        {
+          "url": "https://info.arxiv.org/help/api/basics.html",
+          "title": "arXiv API Basics and endpoint examples",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://info.arxiv.org/help/api/tou.html",
+          "title": "arXiv API Terms of Use and rate limits",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://info.arxiv.org/help/api/index.html",
+          "title": "arXiv API Access and commercial-use guidance",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "world-bank-indicators",
+      "type": "api",
+      "name": "World Bank Indicators API v2",
+      "categories": [
+        "data",
+        "government",
+        "finance",
+        "research",
+        "open-data"
+      ],
+      "capabilities": [
+        "country indicators",
+        "development statistics",
+        "historical time series",
+        "economic data"
+      ],
+      "summary": "Version 2 Indicators API exposes World Bank development indicators and metadata across many databases.",
+      "base_url": "https://api.worldbank.org/v2",
+      "allowed_hosts": [
+        "api.worldbank.org"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/country/{country}/indicator/{indicator}",
+          "purpose": "Read an indicator series; use format=json.",
+          "docs_url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "The official v2 Indicators API documentation says API keys and other authentication are not necessary."
+      },
+      "free_status": "FREE_NO_KEY",
+      "quota": {
+        "details": "No charge or numeric request budget is stated on the reviewed v2 access page. Do not interpret that as an unlimited-service guarantee."
+      },
+      "rate_limits": {
+        "details": "No numeric public rate limit was established from the reviewed docs; use bounded pagination and honor provider responses."
+      },
+      "license": {
+        "service": "World Bank API terms apply.",
+        "data": "Terms can be specific to the dataset; review the linked dataset terms before reuse or redistribution.",
+        "notes": "The Indicators API spans many databases, not one universal data license."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "Official docs mention third-party libraries for Python/R/STATA; no official Python SDK identified in the reviewed page."
+        }
+      ],
+      "privacy": "Public indicator requests normally contain country/indicator filters. Avoid including personal or confidential data in query values.",
+      "cors": {
+        "status": "unknown",
+        "notes": "CORS was not established from the reviewed v2 API documentation; this library is server-side."
+      },
+      "sources": [
+        {
+          "url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation",
+          "title": "Indicators API v2, endpoint structure, and authentication",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview",
+          "title": "World Bank API types and dataset terms",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": {
+        "method": "GET",
+        "path": "country/US/indicator/SP.POP.TOTL",
+        "params": {
+          "format": "json",
+          "per_page": 1
+        }
+      }
+    },
+    {
+      "id": "census-data",
+      "type": "api",
+      "name": "U.S. Census Data API",
+      "categories": [
+        "government",
+        "data",
+        "location",
+        "research",
+        "open-data"
+      ],
+      "capabilities": [
+        "ACS demographics",
+        "population",
+        "geography",
+        "economic statistics"
+      ],
+      "summary": "U.S. Census Bureau APIs expose statistical datasets including American Community Survey tables and geography services.",
+      "base_url": "https://api.census.gov/data",
+      "allowed_hosts": [
+        "api.census.gov"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/{year}/acs/acs5",
+          "purpose": "Example ACS 5-year data endpoint; actual path varies by survey, year, and dataset.",
+          "docs_url": "https://www.census.gov/data/developers/data-sets/acs-5year.html"
+        }
+      ],
+      "authentication": {
+        "kind": "api_key_query",
+        "required": true,
+        "env_var": "CENSUS_API_KEY",
+        "parameter": "key",
+        "notes": "All Census Data API data queries now require a key. The official guide says a key is free to request. The API key is sent in the query string; requests must not be logged with query values."
+      },
+      "free_status": "FREE_WITH_KEY",
+      "quota": {
+        "details": "A free key is required. The reviewed guide allows up to 50 variables in one query; an overall daily quota was not established."
+      },
+      "rate_limits": {
+        "details": "No general numeric request rate was established in the reviewed Census user guide. Follow dataset/query limits and current response guidance."
+      },
+      "license": {
+        "service": "Census API and survey-specific terms apply.",
+        "data": "No single license is asserted for every Census dataset; verify dataset notes and applicable U.S. government terms.",
+        "notes": "Do not infer license or privacy rules for restricted/special datasets from the public API alone."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "No provider-maintained Python SDK confirmed in the reviewed pages."
+        }
+      ],
+      "privacy": "The Census key is included in the URL query. Use TLS, keep credentials in CENSUS_API_KEY, redact request URLs in logs, and never put keys in browser bundles or shared links.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS policy was not confirmed in the reviewed guide."
+      },
+      "sources": [
+        {
+          "url": "https://www.census.gov/data/developers/guidance/api-user-guide.Query_Limits.html",
+          "title": "Census API key requirement and 50-variable query limit",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://www.census.gov/data/developers/guidance/api-user-guide.API_Key.html",
+          "title": "Free Census API key registration",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://www.census.gov/data/developers/data-sets/acs-5year.html",
+          "title": "ACS 5-year datasets and current key requirement",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "nasa-open-apis",
+      "type": "api",
+      "name": "NASA Open APIs (APOD example)",
+      "categories": [
+        "government",
+        "science",
+        "space",
+        "education",
+        "data"
+      ],
+      "capabilities": [
+        "astronomy picture of the day",
+        "space-science metadata",
+        "NASA open data"
+      ],
+      "summary": "NASA API gateway; this record documents the APOD example endpoint rather than every NASA API product.",
+      "base_url": "https://api.nasa.gov",
+      "allowed_hosts": [
+        "api.nasa.gov"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/planetary/apod",
+          "purpose": "Astronomy Picture of the Day; API key may be supplied as api_key.",
+          "docs_url": "https://api.nasa.gov/"
+        }
+      ],
+      "authentication": {
+        "kind": "api_key_query",
+        "required": false,
+        "env_var": "NASA_API_KEY",
+        "parameter": "api_key",
+        "notes": "NASA docs allow exploration without a registered key; DEMO_KEY is heavily rate-limited. A registered developer key is recommended for higher usage. Query-string credentials are redacted by this library's errors/logging."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "NASA docs list DEMO_KEY limits of 30 requests/hour and 50/day per IP; registered API-key defaults are 1,000 requests/hour across api.nasa.gov APIs. Service-specific exceptions may exist."
+      },
+      "rate_limits": {
+        "details": "Rolling hourly counters; inspect X-RateLimit-Limit and X-RateLimit-Remaining. Limits vary by API and can change."
+      },
+      "license": {
+        "service": "NASA API-specific usage rules apply.",
+        "data": "Rights vary by endpoint, media, and source; check asset attribution/copyright details for each result.",
+        "notes": "NASA branding and third-party material are not automatically public domain."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "NASA-specific Python SDK not verified in the reviewed sources."
+        }
+      ],
+      "privacy": "NASA receives endpoint parameters and usage metadata. Do not send personal or confidential information to public science endpoints.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS behavior was not established in the reviewed NASA authentication page."
+      },
+      "sources": [
+        {
+          "url": "https://api.nasa.gov/assets/html/authentication.html",
+          "title": "NASA Open APIs authentication and rate limits",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://api.nasa.gov/",
+          "title": "NASA Open APIs catalog and APOD examples",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "usgs-earthquakes",
+      "type": "api",
+      "name": "USGS FDSN Earthquake Catalog",
+      "categories": [
+        "government",
+        "science",
+        "location",
+        "data",
+        "open-data"
+      ],
+      "capabilities": [
+        "earthquake search",
+        "GeoJSON",
+        "event counts",
+        "geospatial observations"
+      ],
+      "summary": "FDSN Event Web Service for filtered earthquake catalog queries.",
+      "base_url": "https://earthquake.usgs.gov/fdsnws/event/1",
+      "allowed_hosts": [
+        "earthquake.usgs.gov"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/query",
+          "purpose": "Submit an earthquake search; query parameters select time, magnitude, region, and format.",
+          "docs_url": "https://earthquake.usgs.gov/fdsnws/event/1/"
+        },
+        {
+          "method": "GET",
+          "path": "/count",
+          "purpose": "Count matching events using query filters.",
+          "docs_url": "https://earthquake.usgs.gov/fdsnws/event/1/"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "The FDSN endpoint documentation describes public GET query methods and no key requirement."
+      },
+      "free_status": "FREE_NO_KEY",
+      "quota": {
+        "details": "No monetary fee or global numeric quota was established in the reviewed endpoint documentation; use bounded date ranges and conservative request volumes."
+      },
+      "rate_limits": {
+        "details": "No numeric request limit asserted from the reviewed page. Large queries should be narrowed and paginated according to service guidance."
+      },
+      "license": {
+        "service": "USGS/FDSN use guidance applies.",
+        "data": "Rights/attribution may vary by data component; verify the USGS data-use and source notes before redistribution.",
+        "notes": "The official endpoint implements the FDSN Event Web Service specification."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "No provider-maintained Python SDK verified in reviewed sources."
+        }
+      ],
+      "privacy": "Search parameters are sent to a public government endpoint. Do not submit personal or confidential information.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Cross-origin behavior was not confirmed in the reviewed endpoint documentation."
+      },
+      "sources": [
+        {
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+          "title": "USGS Earthquake Catalog API documentation",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "medium",
+      "health_probe": null
+    },
+    {
+      "id": "github-rest",
+      "type": "api",
+      "name": "GitHub REST API (public repository metadata)",
+      "categories": [
+        "development",
+        "automation",
+        "security",
+        "data"
+      ],
+      "capabilities": [
+        "repository metadata",
+        "issues",
+        "releases",
+        "public developer data"
+      ],
+      "summary": "GitHub REST API; this catalog record focuses on public repository reads and does not grant access to private resources.",
+      "base_url": "https://api.github.com",
+      "allowed_hosts": [
+        "api.github.com"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/repos/{owner}/{repo}",
+          "purpose": "Read a repository record.",
+          "docs_url": "https://docs.github.com/en/rest/repos/repos#get-a-repository"
+        }
+      ],
+      "authentication": {
+        "kind": "optional_bearer",
+        "required": false,
+        "env_var": "GITHUB_TOKEN",
+        "notes": "Public data can be fetched without auth. A least-privilege token raises the primary rate budget; tokens must not be logged or embedded in source."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "GitHub docs list 60 requests/hour unauthenticated and 5,000 requests/hour for a typical authenticated user. Endpoint-specific and secondary limits also apply."
+      },
+      "rate_limits": {
+        "details": "Search routes have separate limits (generally 10/minute unauthenticated; code search requires authentication and is 10/minute). Check rate-limit headers and current docs."
+      },
+      "license": {
+        "service": "GitHub API terms and acceptable-use rules apply.",
+        "data": "Repository content is licensed per repository; public visibility does not imply a reusable content license.",
+        "notes": "Only public read methods are described here."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "No GitHub-maintained Python client was verified in the reviewed docs; official Octokit libraries exist for other languages."
+        }
+      ],
+      "privacy": "Requests identify the IP/token and may reveal repository search terms. Do not include secrets in issue or code search queries.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS support was not verified for all GitHub REST routes; OAuth tokens must remain server-side."
+      },
+      "sources": [
+        {
+          "url": "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api",
+          "title": "GitHub REST API primary rate limits",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://docs.github.com/en/rest/search/search",
+          "title": "GitHub REST API search-specific limits",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://docs.github.com/en/rest/repos/repos#get-a-repository",
+          "title": "Get a repository endpoint",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": {
+        "method": "GET",
+        "path": "/repos/public-apis/public-apis",
+        "params": {}
+      }
+    },
+    {
+      "id": "pypi-json",
+      "type": "api",
+      "name": "PyPI JSON API",
+      "categories": [
+        "development",
+        "package-index",
+        "security",
+        "data"
+      ],
+      "capabilities": [
+        "Python package metadata",
+        "release metadata",
+        "artifact hashes",
+        "package discovery"
+      ],
+      "summary": "PyPI-specific JSON metadata route for Python projects.",
+      "base_url": "https://pypi.org",
+      "allowed_hosts": [
+        "pypi.org"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/pypi/{project}/json",
+          "purpose": "Retrieve metadata for a project and its releases; some response keys are deprecated.",
+          "docs_url": "https://docs.pypi.org/api/json/"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "Public project metadata reads do not require credentials; publishing and private package operations are outside this record."
+      },
+      "free_status": "FREE_NO_KEY",
+      "quota": {
+        "details": "No numeric request quota or service-level guarantee was established in the reviewed JSON API reference."
+      },
+      "rate_limits": {
+        "details": "Not numerically established in the reviewed JSON reference; avoid high-frequency polling and honor HTTP responses."
+      },
+      "license": {
+        "service": "PyPI Terms of Service apply.",
+        "data": "Package license fields are publisher-supplied metadata and may be incomplete or inaccurate; verify the package and artifact license independently.",
+        "notes": "The JSON route exposes metadata and hashes; it is not a package safety guarantee."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "No provider-maintained Python SDK verified; pip uses registry protocols."
+        }
+      ],
+      "privacy": "Requests disclose package names, IP address, and client headers to PyPI. Do not send secrets as path/query values.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS behavior was not established by the JSON API page."
+      },
+      "sources": [
+        {
+          "url": "https://docs.pypi.org/api/json/",
+          "title": "PyPI JSON API routes and metadata caveats",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": {
+        "method": "GET",
+        "path": "/pypi/pip/json",
+        "params": {}
+      }
+    },
+    {
+      "id": "npm-registry",
+      "type": "api",
+      "name": "npm Public Registry Metadata API",
+      "categories": [
+        "development",
+        "package-index",
+        "security",
+        "data"
+      ],
+      "capabilities": [
+        "JavaScript package metadata",
+        "versions",
+        "dependency metadata",
+        "package discovery"
+      ],
+      "summary": "Public npm registry metadata endpoint for packages. Public reads only; publishing and private scopes have separate authentication requirements.",
+      "base_url": "https://registry.npmjs.org",
+      "allowed_hosts": [
+        "registry.npmjs.org"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/{package}",
+          "purpose": "Retrieve package metadata; use the abbreviated Accept header when suitable.",
+          "docs_url": "https://github.com/npm/registry/blob/main/docs/responses/package-metadata.md"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "Public package metadata reads are unauthenticated. Private package access and write APIs are not covered."
+      },
+      "free_status": "FREE_NO_KEY",
+      "quota": {
+        "details": "No numeric public-read quota was established in the reviewed registry response documentation."
+      },
+      "rate_limits": {
+        "details": "No numeric rate limit asserted; use caching/conditional requests and respect registry responses."
+      },
+      "license": {
+        "service": "npm registry terms apply.",
+        "data": "Package metadata/license fields are publisher supplied; verify actual package and dependency licenses independently.",
+        "notes": "Registry metadata is not a security or provenance attestation."
+      },
+      "sdk": [
+        {
+          "name": "npm CLI",
+          "status": "Official client for registry operations; this project uses the documented HTTP metadata interface.",
+          "url": "https://docs.npmjs.com/cli/v11/using-npm/registry/"
+        }
+      ],
+      "privacy": "Requests reveal package names, IP address, and client headers. Public metadata may contain maintainer contact details supplied by publishers.",
+      "cors": {
+        "status": "unknown",
+        "notes": "CORS policy was not established in the reviewed package metadata document."
+      },
+      "sources": [
+        {
+          "url": "https://github.com/npm/registry/blob/main/docs/responses/package-metadata.md",
+          "title": "npm Registry Package Metadata API",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://docs.npmjs.com/cli/v11/using-npm/registry/",
+          "title": "npm registry configuration and public registry",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": {
+        "method": "GET",
+        "path": "/is-number",
+        "params": {}
+      }
+    },
+    {
+      "id": "youtube-data-v3",
+      "type": "api",
+      "name": "YouTube Data API v3",
+      "categories": [
+        "media",
+        "communication",
+        "development",
+        "data"
+      ],
+      "capabilities": [
+        "video search",
+        "channel metadata",
+        "playlist metadata",
+        "comments",
+        "OAuth actions"
+      ],
+      "summary": "Google API for public YouTube resource metadata and authorized channel operations.",
+      "base_url": "https://www.googleapis.com/youtube/v3",
+      "allowed_hosts": [
+        "www.googleapis.com"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/search",
+          "purpose": "Search videos/channels/playlists; current docs list a separate 100-calls/day search bucket.",
+          "docs_url": "https://developers.google.com/youtube/v3/docs/search/list"
+        },
+        {
+          "method": "GET",
+          "path": "/videos",
+          "purpose": "Retrieve video resources; method-specific quota applies.",
+          "docs_url": "https://developers.google.com/youtube/v3/docs/videos/list"
+        }
+      ],
+      "authentication": {
+        "kind": "api_key_query",
+        "required": true,
+        "env_var": "YOUTUBE_API_KEY",
+        "parameter": "key",
+        "notes": "Public read access uses an API key; user data and write actions require OAuth 2.0. Do not expose keys in browser bundles or logs."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "Official overview describes default project quota of 10,000 units/day for other endpoints, plus 100 search.list calls/day and 100 videos.insert calls/day in separate buckets. Default allocation and per-method costs can change; confirm in Cloud Console."
+      },
+      "rate_limits": {
+        "details": "Quota is project-scoped and method-specific. Current search.list docs report a one-unit cost in a separate 100-calls/day bucket; check method docs and the API Console."
+      },
+      "license": {
+        "service": "YouTube API Services Terms and Developer Policies apply.",
+        "data": "YouTube videos and metadata may carry creator/publisher rights; API access is not a blanket redistribution license.",
+        "notes": "Comply with display, storage, deletion, and attribution rules."
+      },
+      "sdk": [
+        {
+          "name": "Google API client libraries",
+          "status": "Google documents client libraries; select a supported language library from the official guide.",
+          "url": "https://developers.google.com/youtube/data/libraries"
+        }
+      ],
+      "privacy": "Requests are associated with a Google Cloud project/key; OAuth operations can involve user data. Minimize collection and comply with YouTube policy and user consent requirements.",
+      "cors": {
+        "status": "unknown",
+        "notes": "CORS support varies by Google API route and auth flow; not asserted here."
+      },
+      "sources": [
+        {
+          "url": "https://developers.google.com/youtube/data/getting-started",
+          "title": "YouTube Data API setup and quota overview",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://developers.google.com/youtube/v3/docs/search/list",
+          "title": "YouTube search.list quota impact",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://developers.google.com/youtube/data/determine_quota_cost",
+          "title": "YouTube quota calculator and per-method costs",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "mediawiki-action",
+      "type": "api",
+      "name": "MediaWiki Action API (English Wikipedia example)",
+      "categories": [
+        "media",
+        "research",
+        "education",
+        "development",
+        "data"
+      ],
+      "capabilities": [
+        "encyclopedia page search",
+        "page metadata",
+        "revision lookup",
+        "public wiki queries"
+      ],
+      "summary": "MediaWiki Action API; this record uses English Wikipedia as a public example instance. Each wiki may have different policies.",
+      "base_url": "https://en.wikipedia.org/w/api.php",
+      "allowed_hosts": [
+        "en.wikipedia.org"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "",
+          "purpose": "Action API requests use query parameters such as action=query, list=search, format=json.",
+          "docs_url": "https://www.mediawiki.org/wiki/API:Action_API"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "Public read queries do not require a key; account authentication/tokens are required for some edits and private actions."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "Public reads are available; numeric limits depend on the wiki and action. Follow API etiquette and User-Agent guidance; do not assume unlimited use."
+      },
+      "rate_limits": {
+        "details": "Instance/action-specific; respect maxlag, response headers, and the MediaWiki API Etiquette guide."
+      },
+      "license": {
+        "service": "MediaWiki instance terms apply.",
+        "data": "Wikipedia text is generally CC BY-SA/GFDL subject to page-level exceptions; images and other files have individual licenses.",
+        "notes": "Verify the license of each page/media item before reuse."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "No Wikimedia-maintained Python SDK verified in the reviewed docs."
+        }
+      ],
+      "privacy": "Queries and IP/User-Agent are sent to Wikimedia. Do not send private information; respect privacy policy and API etiquette.",
+      "cors": {
+        "status": "conditional",
+        "notes": "Browser cross-origin requests are supported through MediaWiki's documented origin parameter and instance CORS rules; not all auth/actions are available cross-origin."
+      },
+      "sources": [
+        {
+          "url": "https://www.mediawiki.org/wiki/API:Action_API",
+          "title": "MediaWiki Action API documentation",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://www.mediawiki.org/wiki/API:Etiquette",
+          "title": "MediaWiki API etiquette and usage guidance",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "medium",
+      "health_probe": null
+    },
+    {
+      "id": "open-meteo",
+      "type": "api",
+      "name": "Open-Meteo Weather API (free/open-access endpoint)",
+      "categories": [
+        "weather",
+        "location",
+        "data",
+        "science",
+        "open-data"
+      ],
+      "capabilities": [
+        "weather forecast",
+        "current weather",
+        "historical weather",
+        "air quality",
+        "elevation"
+      ],
+      "summary": "Weather and environmental data API; the free endpoint is for non-commercial use and requires attribution.",
+      "base_url": "https://api.open-meteo.com/v1",
+      "allowed_hosts": [
+        "api.open-meteo.com"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/forecast",
+          "purpose": "Fetch forecast/current weather by coordinates and requested variables.",
+          "docs_url": "https://open-meteo.com/en/docs"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "Free/open-access endpoint does not require a key. Commercial use requires a paid plan and customer-api.open-meteo.com; this catalog entry intentionally points only to the public endpoint."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "Free non-commercial tier: 600 calls/minute, 5,000/hour, 10,000/day, and 300,000/month. Request complexity can count as multiple calls. Paid tiers have plan-specific budgets; no unlimited claim is made."
+      },
+      "rate_limits": {
+        "details": "The free endpoint is rate-limited as above and has no uptime guarantee. Check current pricing before production use."
+      },
+      "license": {
+        "service": "Non-commercial use only on free tier; paid plan includes a commercial-use license.",
+        "data": "Weather data is CC BY 4.0 with attribution; API server code is AGPLv3.",
+        "notes": "Do not use the free endpoint commercially without the required license."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "Official endpoint docs provide HTTP examples; no provider-maintained Python SDK asserted here."
+        }
+      ],
+      "privacy": "Coordinates and selected variables are sent to Open-Meteo. Avoid precise personal location data unless necessary and disclosed.",
+      "cors": {
+        "status": "unknown",
+        "notes": "CORS was not established from the reviewed pricing page; server-side requests avoid browser CORS dependency."
+      },
+      "sources": [
+        {
+          "url": "https://open-meteo.com/en/pricing",
+          "title": "Open-Meteo free-tier limits, license, and commercial terms",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://open-meteo.com/en/docs",
+          "title": "Open-Meteo API endpoint documentation",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": {
+        "method": "GET",
+        "path": "forecast",
+        "params": {
+          "latitude": 0,
+          "longitude": 0,
+          "current": "temperature_2m"
+        }
+      }
+    },
+    {
+      "id": "nominatim",
+      "type": "api",
+      "name": "OpenStreetMap Nominatim public geocoder",
+      "categories": [
+        "location",
+        "data",
+        "open-data"
+      ],
+      "capabilities": [
+        "forward geocoding",
+        "reverse geocoding",
+        "OpenStreetMap search"
+      ],
+      "summary": "Public OSM Foundation Nominatim instance; this is a constrained community service, not a general high-volume geocoding backend.",
+      "base_url": "https://nominatim.openstreetmap.org",
+      "allowed_hosts": [
+        "nominatim.openstreetmap.org"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/search",
+          "purpose": "Geocode an explicitly initiated query; no client-side autocomplete.",
+          "docs_url": "https://operations.osmfoundation.org/policies/nominatim/"
+        },
+        {
+          "method": "GET",
+          "path": "/reverse",
+          "purpose": "Reverse-geocode a coordinate subject to usage policy.",
+          "docs_url": "https://operations.osmfoundation.org/policies/nominatim/"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "No API key, but a valid app-identifying User-Agent or Referer is required. APIMind's Nominatim connector also requires explicit policy acknowledgement."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "Maximum 1 request/second per application. Bulk/periodic use is restricted; long-running scheduled scripts are limited to 4 requests/minute under the policy. Cache results and use one machine/thread for allowed bulk work."
+      },
+      "rate_limits": {
+        "details": "Hard use-policy requirements: no autocomplete, no systematic queries, no scraping details, no resale; aggregate requests from all app users count. This connector serializes at 1.1 seconds per instance only and cannot enforce cross-process totals."
+      },
+      "license": {
+        "service": "OpenStreetMap Foundation Terms of Use and Nominatim policy apply.",
+        "data": "OpenStreetMap data is ODbL; attribution is required and share-alike obligations may apply.",
+        "notes": "Commercial geocoding services should run their own instance or use a suitable provider."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "No OSMF-maintained Python SDK verified in the reviewed policy."
+        }
+      ],
+      "privacy": "OSMF privacy policy applies. The policy explicitly says not to submit personal or confidential material; geocoding queries can reveal precise locations.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS behavior was not established by the usage policy. Use server-side calls and observe the policy."
+      },
+      "sources": [
+        {
+          "url": "https://operations.osmfoundation.org/policies/nominatim/",
+          "title": "Official Nominatim usage policy, privacy, attribution, and limits",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "frankfurter",
+      "type": "api",
+      "name": "Frankfurter reference exchange-rate API",
+      "categories": [
+        "finance",
+        "data",
+        "open-data",
+        "development"
+      ],
+      "capabilities": [
+        "reference currency rates",
+        "historical rates",
+        "rate time series",
+        "central bank sources"
+      ],
+      "summary": "No-key reference exchange-rate API aggregating central-bank and official-source data; these are not live market quotes.",
+      "base_url": "https://api.frankfurter.dev",
+      "allowed_hosts": [
+        "api.frankfurter.dev"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v2/rates",
+          "purpose": "List latest or historical reference rates.",
+          "docs_url": "https://frankfurter.dev/"
+        },
+        {
+          "method": "GET",
+          "path": "/v2/rate/{base}/{quote}",
+          "purpose": "Fetch a single currency/asset pair rate.",
+          "docs_url": "https://frankfurter.dev/"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "Official docs state that no API key is required."
+      },
+      "free_status": "FREE_NO_KEY",
+      "quota": {
+        "details": "The public API is described as free. A numeric request quota or uptime commitment was not stated in the reviewed docs."
+      },
+      "rate_limits": {
+        "details": "No numeric public rate limit was established in the reviewed source; avoid excessive polling and cache reference rates where appropriate."
+      },
+      "license": {
+        "service": "Frankfurter project terms apply; project describes its service as open source.",
+        "data": "Underlying source data and provider terms vary; reference rates are published by central banks/official sources.",
+        "notes": "Do not treat reference rates as executable or intraday market prices."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "Official documentation gives fetch examples and states no SDK is needed."
+        }
+      ],
+      "privacy": "Queries reveal requested currencies, dates, and providers but should not contain personal information.",
+      "cors": {
+        "status": "supported",
+        "notes": "Frankfurter's official JavaScript guide states CORS is open for its public API. Browser use still has ordinary keyless public-service availability limits."
+      },
+      "sources": [
+        {
+          "url": "https://frankfurter.dev/",
+          "title": "Frankfurter API v2 endpoints and reference-rate caveat",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://frankfurter.dev/javascript/",
+          "title": "Frankfurter browser use and CORS statement",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": {
+        "method": "GET",
+        "path": "v2/currency/usd",
+        "params": {}
+      }
+    },
+    {
+      "id": "fred",
+      "type": "api",
+      "name": "FRED API v1",
+      "categories": [
+        "finance",
+        "data",
+        "research"
+      ],
+      "capabilities": [
+        "economic time series",
+        "observations",
+        "release data",
+        "historical vintages"
+      ],
+      "summary": "Federal Reserve Bank of St. Louis API for FRED and ALFRED economic data.",
+      "base_url": "https://api.stlouisfed.org/fred",
+      "allowed_hosts": [
+        "api.stlouisfed.org"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/series/observations",
+          "purpose": "Retrieve observations for an economic series; specify file_type=json for JSON.",
+          "docs_url": "https://fred.stlouisfed.org/docs/api/fred/series_observations.html"
+        }
+      ],
+      "authentication": {
+        "kind": "api_key_query",
+        "required": true,
+        "env_var": "FRED_API_KEY",
+        "parameter": "api_key",
+        "notes": "Every web-service request requires a key; requesting/viewing a key requires a FRED account. The reviewed auth page did not establish a monetary price, so this catalog does not claim the key is free."
+      },
+      "free_status": "UNKNOWN",
+      "quota": {
+        "details": "Key required; monetary access terms and a current overall API rate quota were not established by the reviewed API-key page. Verify before use."
+      },
+      "rate_limits": {
+        "details": "No numeric rate limit asserted from the reviewed source."
+      },
+      "license": {
+        "service": "FRED API terms of use apply.",
+        "data": "Underlying series may come from third-party sources with distinct rights and attribution requirements; inspect each series/source.",
+        "notes": "A FRED key does not confer redistribution rights to every underlying series."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "No St. Louis Fed-maintained Python SDK verified in the reviewed pages."
+        }
+      ],
+      "privacy": "API keys appear in the query string under the documented API. The client injects FRED_API_KEY from the environment and avoids logging URLs; HTTPS is required.",
+      "cors": {
+        "status": "unknown",
+        "notes": "CORS was not established from the reviewed FRED API documentation."
+      },
+      "sources": [
+        {
+          "url": "https://fred.stlouisfed.org/docs/api/api_key.html",
+          "title": "FRED API key requirements",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://fred.stlouisfed.org/docs/api/fred/series_observations.html",
+          "title": "FRED series observations endpoint",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "sec-edgar",
+      "type": "api",
+      "name": "SEC EDGAR Submissions and XBRL APIs",
+      "categories": [
+        "finance",
+        "government",
+        "data",
+        "research",
+        "open-data"
+      ],
+      "capabilities": [
+        "company filing history",
+        "XBRL company facts",
+        "submissions metadata",
+        "financial statements"
+      ],
+      "summary": "Public SEC data.sec.gov JSON APIs for filing submissions and selected XBRL company facts.",
+      "base_url": "https://data.sec.gov",
+      "allowed_hosts": [
+        "data.sec.gov"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/submissions/CIK##########.json",
+          "purpose": "Read company submission history using the 10-digit CIK.",
+          "docs_url": "https://www.sec.gov/edgar/sec-api-documentation"
+        },
+        {
+          "method": "GET",
+          "path": "/api/xbrl/companyfacts/CIK##########.json",
+          "purpose": "Read company XBRL facts.",
+          "docs_url": "https://www.sec.gov/edgar/sec-api-documentation"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "The SEC documentation says data.sec.gov APIs do not require authentication or API keys. Automated access must comply with SEC policies and identify the client as required."
+      },
+      "free_status": "FREE_NO_KEY",
+      "quota": {
+        "details": "Public API access is unauthenticated; a numeric request quota was not established in the reviewed SEC API page. Do not infer unlimited throughput."
+      },
+      "rate_limits": {
+        "details": "Follow SEC fair-access and automated-access guidance; the reviewed API page directs developers to SEC privacy/security and developer FAQ requirements."
+      },
+      "license": {
+        "service": "SEC automated-access and privacy/security policies apply.",
+        "data": "SEC filing data is public government material, but individual filing content and third-party exhibits may retain separate rights.",
+        "notes": "Attribution/filing source context should be preserved."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "SEC documents REST endpoints; no SEC-maintained Python SDK verified."
+        }
+      ],
+      "privacy": "Requests disclose IP, User-Agent, and requested CIKs. Never send private financial data; comply with SEC security policy.",
+      "cors": {
+        "status": "unsupported",
+        "notes": "The SEC explicitly states data.sec.gov does not support CORS; use a server-side proxy/client."
+      },
+      "sources": [
+        {
+          "url": "https://www.sec.gov/edgar/sec-api-documentation",
+          "title": "SEC EDGAR APIs, authentication, endpoints, and CORS",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "nvd",
+      "type": "api",
+      "name": "NIST National Vulnerability Database API 2.0",
+      "categories": [
+        "security",
+        "development",
+        "government",
+        "data"
+      ],
+      "capabilities": [
+        "CVE search",
+        "CPE search",
+        "vulnerability metadata",
+        "security advisories"
+      ],
+      "summary": "NIST NVD REST API for vulnerability records and related security data.",
+      "base_url": "https://services.nvd.nist.gov/rest/json",
+      "allowed_hosts": [
+        "services.nvd.nist.gov"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/cves/2.0",
+          "purpose": "Search CVEs using documented query parameters.",
+          "docs_url": "https://nvd.nist.gov/developers/start-here"
+        }
+      ],
+      "authentication": {
+        "kind": "optional_api_key_header",
+        "required": false,
+        "env_var": "NVD_API_KEY",
+        "header": "apiKey",
+        "notes": "Public requests work without a key at a lower limit; a key requested from NIST raises the rate ceiling. Use the exact case-sensitive header name."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "NIST documents 5 requests per rolling 30 seconds without an API key and 50 per rolling 30 seconds with a key."
+      },
+      "rate_limits": {
+        "details": "NIST recommends sequential requests with about six seconds between calls and incremental updates no more than once every two hours. Limits may be enforced by firewall rules."
+      },
+      "license": {
+        "service": "NVD API use and attribution guidance apply.",
+        "data": "NIST states its publications are public domain under U.S. law; applications must display the NVD non-endorsement notice and not imply certification.",
+        "notes": "Do not brand an application as NVD-endorsed."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "No NIST-maintained Python SDK verified in the reviewed documentation."
+        }
+      ],
+      "privacy": "Queries disclose CVE/CPE terms and request metadata. API keys are sent in a header and are not written to logs by this library.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS behavior was not confirmed in the reviewed NVD guide."
+      },
+      "sources": [
+        {
+          "url": "https://nvd.nist.gov/developers/start-here",
+          "title": "NVD API key, public limits, attribution, and best practices",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "osv",
+      "type": "api",
+      "name": "OSV Vulnerability API",
+      "categories": [
+        "security",
+        "development",
+        "package-index",
+        "data"
+      ],
+      "capabilities": [
+        "dependency vulnerability lookup",
+        "version query",
+        "commit query",
+        "batch vulnerability scan"
+      ],
+      "summary": "OpenSSF OSV API queries vulnerability records by package/version or commit; databases are aggregated from multiple ecosystems.",
+      "base_url": "https://api.osv.dev/v1",
+      "allowed_hosts": [
+        "api.osv.dev"
+      ],
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/query",
+          "purpose": "Query vulnerabilities for a package version or commit.",
+          "docs_url": "https://google.github.io/osv.dev/api/"
+        },
+        {
+          "method": "POST",
+          "path": "/querybatch",
+          "purpose": "Batch multiple vulnerability queries.",
+          "docs_url": "https://google.github.io/osv.dev/api/"
+        },
+        {
+          "method": "GET",
+          "path": "/vulns/{id}",
+          "purpose": "Retrieve a vulnerability record by OSV ID.",
+          "docs_url": "https://google.github.io/osv.dev/api/"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "The public API docs describe unauthenticated API calls."
+      },
+      "free_status": "FREE_NO_KEY",
+      "quota": {
+        "details": "Official API documentation currently says there are no API rate limits and documents a 32 MiB response limit over HTTP/1.1. This is not an uptime or unlimited-service guarantee."
+      },
+      "rate_limits": {
+        "details": "No numeric limit is currently published by the OSV API docs; use bounded batch sizes and observe response-size limits."
+      },
+      "license": {
+        "service": "OSV API terms apply.",
+        "data": "Vulnerability entries originate from multiple advisory databases; license/attribution can vary by source.",
+        "notes": "OSV format/API availability does not relicense every upstream advisory."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "OSV-Scanner is an official first-party tool; no Python SDK is asserted here.",
+          "url": "https://google.github.io/osv-scanner/"
+        }
+      ],
+      "privacy": "Package names, ecosystem, version, or commit hashes are sent to OSV. Do not include private dependency names if their disclosure is sensitive.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS behavior was not verified in the API reference."
+      },
+      "sources": [
+        {
+          "url": "https://google.github.io/osv.dev/api/",
+          "title": "OSV API methods, rate limits, and response-size limits",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://google.github.io/osv.dev/",
+          "title": "OSV vulnerability database aggregator overview",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "gemini-api",
+      "type": "api",
+      "name": "Google Gemini Developer API (Gemini 3.8 Flash example)",
+      "categories": [
+        "ai",
+        "math",
+        "development",
+        "media",
+        "research"
+      ],
+      "capabilities": [
+        "text generation",
+        "multimodal understanding",
+        "coding",
+        "mathematical reasoning",
+        "function calling",
+        "agents"
+      ],
+      "summary": "Google's Gemini API; this access note is model-specific and uses Gemini 3.8 Flash as the example model.",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta",
+      "allowed_hosts": [
+        "generativelanguage.googleapis.com"
+      ],
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/interactions",
+          "purpose": "Create a model interaction; Gemini 3.8 Flash appears in the official getting-started SDK example. Verify current REST schema before direct HTTP integration.",
+          "docs_url": "https://aistudio.google.com/docs/get-started"
+        },
+        {
+          "method": "POST",
+          "path": "/models/{model}:generateContent",
+          "purpose": "Generate content using the documented Gemini API model route.",
+          "docs_url": "https://ai.google.dev/api/generate-content"
+        }
+      ],
+      "authentication": {
+        "kind": "api_key_header",
+        "required": true,
+        "env_var": "GEMINI_API_KEY",
+        "header": "x-goog-api-key",
+        "notes": "An API key is required. Free-tier availability is model- and account-specific; keys and paid billing must be kept server-side."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "The reviewed pricing page lists Gemini 3.8 Flash paid rates at $0.75 per 1M input tokens and $3.75 per 1M output tokens through 2026-12-31, with changes scheduled for 2027-01-01. Free-tier availability is model- and account-specific; the reviewed material does not establish that this paid-tier model access is free. Verify the selected model, tier, and price in AI Studio before deployment."
+      },
+      "rate_limits": {
+        "details": "Limits depend on account tier and model and are shown in Google AI Studio. No universal request quota is asserted here."
+      },
+      "license": {
+        "service": "Google Gemini API terms apply.",
+        "data": "API output rights and use restrictions are governed by Google terms; this is not an open-weight model license.",
+        "notes": "Free-tier terms differ from paid-tier terms."
+      },
+      "sdk": [
+        {
+          "name": "google-genai",
+          "type": "Python",
+          "status": "Official Google GenAI SDK documented in the current quickstart.",
+          "url": "https://github.com/googleapis/python-genai"
+        }
+      ],
+      "privacy": "Google's current pricing page states Free-tier content may be used to improve products, while Paid-tier content is not. Do not send sensitive, confidential, or personal information on the Free tier; review current terms and retention controls.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS/auth safety was not asserted in the reviewed guides; never expose a production API key in client-side code."
+      },
+      "sources": [
+        {
+          "url": "https://aistudio.google.com/docs/pricing",
+          "title": "Gemini API current tier and model pricing",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://aistudio.google.com/docs/get-started",
+          "title": "Gemini API key, SDK, and model example",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/terms",
+          "title": "Gemini API terms and unpaid-service data-use terms",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://ai.google.dev/api/generate-content",
+          "title": "Gemini generateContent REST reference",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "openrouter",
+      "type": "api",
+      "name": "OpenRouter Inference API",
+      "categories": [
+        "ai",
+        "development",
+        "automation"
+      ],
+      "capabilities": [
+        "OpenAI-compatible model routing",
+        "chat completion",
+        "provider selection",
+        "free-model access"
+      ],
+      "summary": "Multi-provider inference router. Availability, cost, rate limits, and data policy depend on the selected model and serving endpoint.",
+      "base_url": "https://openrouter.ai/api/v1",
+      "allowed_hosts": [
+        "openrouter.ai"
+      ],
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/chat/completions",
+          "purpose": "OpenAI-compatible chat completions with explicit model selection.",
+          "docs_url": "https://openrouter.ai/docs"
+        },
+        {
+          "method": "GET",
+          "path": "/models",
+          "purpose": "List available model identifiers and metadata.",
+          "docs_url": "https://openrouter.ai/docs"
+        }
+      ],
+      "authentication": {
+        "kind": "bearer",
+        "required": true,
+        "env_var": "OPENROUTER_API_KEY",
+        "notes": "Bearer API key required. Configure a spending budget and select a provider/model deliberately."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "Some free model variants are available, but they have model/account-specific request caps; other models are paid. Free access is not universal or unlimited, and some account balance states can block even free-model requests."
+      },
+      "rate_limits": {
+        "details": "Free-model, key-management, per-IP, and provider/model-specific limits differ. Read X-RateLimit headers and honor Retry-After."
+      },
+      "license": {
+        "service": "OpenRouter Terms of Service and upstream model/provider terms apply.",
+        "data": "Each model/provider has its own model license and acceptable-use terms.",
+        "notes": "A routed API does not grant rights to model weights or training data."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "Official docs provide raw REST and language examples; no official Python package is asserted here."
+        }
+      ],
+      "privacy": "OpenRouter says it does not use inputs/outputs for its own model training, but forwards prompts to selected providers whose retention/training rules differ. Endpoint-level ZDR/safety-retention tiers and tools/plugins must be checked per request; avoid sensitive data unless policy permits it.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser use is not recommended for secret API keys; CORS was not verified in reviewed docs."
+      },
+      "sources": [
+        {
+          "url": "https://openrouter.ai/docs/limits",
+          "title": "OpenRouter free-model, credit, and rate-limit behavior",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://openrouter.ai/privacy",
+          "title": "OpenRouter privacy and upstream provider data practices",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://openrouter.ai/docs/guides/features/zdr",
+          "title": "OpenRouter endpoint-level data policy tiers and ZDR controls",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "groq-cloud",
+      "type": "api",
+      "name": "GroqCloud OpenAI-compatible Inference API",
+      "categories": [
+        "ai",
+        "development",
+        "media",
+        "automation"
+      ],
+      "capabilities": [
+        "chat completions",
+        "reasoning models",
+        "speech transcription",
+        "fast inference"
+      ],
+      "summary": "Hosted inference endpoint with model-specific pricing and organization-level rate limits; this record cites GPT-OSS 120B as a priced example.",
+      "base_url": "https://api.groq.com/openai/v1",
+      "allowed_hosts": [
+        "api.groq.com"
+      ],
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/chat/completions",
+          "purpose": "OpenAI-compatible chat completion.",
+          "docs_url": "https://console.groq.com/docs/overview"
+        },
+        {
+          "method": "GET",
+          "path": "/models",
+          "purpose": "List active models.",
+          "docs_url": "https://console.groq.com/docs/models"
+        }
+      ],
+      "authentication": {
+        "kind": "bearer",
+        "required": true,
+        "env_var": "GROQ_API_KEY",
+        "notes": "Use a secret API key from the Groq console; never place it in source or client-side code."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "Groq offers a Developer/free access tier with model- and account-specific request limits; paid usage and model prices also vary. The reviewed production table lists openai/gpt-oss-120b at $0.15 per 1M input tokens and $0.60 per 1M output tokens. Confirm current model availability, rate limits, and billing in the console."
+      },
+      "rate_limits": {
+        "details": "Model and organization dependent. Groq's current page lists GPT-OSS 120B Developer-plan base limits of 30 RPM, 1,000 RPD, 8K TPM, and 200K TPD; account limits can differ. Honor retry-after on 429."
+      },
+      "license": {
+        "service": "Groq service terms apply.",
+        "data": "Hosted-model licenses are model-specific; endpoint access does not confer weight rights.",
+        "notes": "Production/preview model status may change."
+      },
+      "sdk": [
+        {
+          "name": "groq",
+          "type": "Python",
+          "status": "Official Groq Python SDK.",
+          "url": "https://github.com/groq/groq-python"
+        }
+      ],
+      "privacy": "Groq says inference inputs/outputs are not retained by default, but may be temporarily logged for reliability/abuse investigation for up to 30 days unless eligible controls are enabled. Batch/fine-tuning features retain data by design; read current data controls before sending sensitive content.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Keep Groq credentials server-side; CORS behavior was not established in the reviewed docs."
+      },
+      "sources": [
+        {
+          "url": "https://console.groq.com/docs/models",
+          "title": "Groq supported-model prices and identifiers",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://console.groq.com/docs/rate-limits",
+          "title": "Groq model and organization rate limits",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://console.groq.com/docs/your-data",
+          "title": "Groq inference retention and data controls",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "deepl",
+      "type": "api",
+      "name": "DeepL API",
+      "categories": [
+        "translation",
+        "ai",
+        "communication",
+        "development"
+      ],
+      "capabilities": [
+        "text translation",
+        "language detection",
+        "document translation",
+        "glossaries"
+      ],
+      "summary": "DeepL translation API with distinct Free and Pro API hostnames and usage plans.",
+      "base_url": "https://api-free.deepl.com/v2",
+      "allowed_hosts": [
+        "api-free.deepl.com"
+      ],
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/translate",
+          "purpose": "Translate text; request body is JSON or form-encoded.",
+          "docs_url": "https://developers.deepl.com/api-reference/translate/request-translation"
+        }
+      ],
+      "authentication": {
+        "kind": "api_key_header",
+        "required": true,
+        "env_var": "DEEPL_API_KEY",
+        "header": "Authorization",
+        "prefix": "DeepL-Auth-Key ",
+        "notes": "Use the Free API host for Free-plan keys and the Pro API host for Pro plans. Keep keys server-side."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "Current Developer plan includes a one-time 1,000,000-character credit; it does not reset monthly. The retired API Free plan's former 500,000/month allowance is not currently purchasable. Paid Growth/Enterprise plans have separate included and usage-based pricing."
+      },
+      "rate_limits": {
+        "details": "Per-request limits and account usage limits vary; check current plan docs. HTTP 456 indicates quota exhausted and should not be retried."
+      },
+      "license": {
+        "service": "DeepL API Terms and plan-specific terms apply.",
+        "data": "Translation outputs and use rights follow DeepL terms; included credits do not create an unlimited service license.",
+        "notes": "Growth advertises no data training; do not assume that same guarantee for every plan."
+      },
+      "sdk": [
+        {
+          "name": "deepl",
+          "type": "Python",
+          "status": "Official DeepL Python client library.",
+          "url": "https://github.com/DeepLcom/deepl-python"
+        }
+      ],
+      "privacy": "Text is transmitted to DeepL for processing. Current Growth pricing advertises no data training and deletion after processing; the free Developer plan does not show that same promise in the reviewed table. Do not send sensitive text without confirming plan terms.",
+      "cors": {
+        "status": "unknown",
+        "notes": "DeepL says not to use API keys in client-side code; browser CORS behavior was not verified."
+      },
+      "sources": [
+        {
+          "url": "https://www.deepl.com/en/pro#api",
+          "title": "Current DeepL API Developer/Growth plans and one-time credit",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://developers.deepl.com/docs/getting-started/auth",
+          "title": "DeepL Free/Pro API hostnames and authentication header",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://support.deepl.com/hc/en-us/articles/360021200939-DeepL-API-plans",
+          "title": "DeepL confirms old monthly API Free plan is no longer purchasable",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "high",
+      "health_probe": null
+    },
+    {
+      "id": "libretranslate",
+      "type": "api",
+      "name": "LibreTranslate (self-hosted software; hosted instances vary)",
+      "categories": [
+        "translation",
+        "ai",
+        "development",
+        "automation"
+      ],
+      "capabilities": [
+        "self-hosted translation",
+        "language detection",
+        "open-source deployment"
+      ],
+      "summary": "Open-source machine-translation server. The public libretranslate.com instance has its own key/pricing requirements; this record describes self-hosting, not a free hosted endpoint.",
+      "base_url": "https://libretranslate.com",
+      "allowed_hosts": [
+        "libretranslate.com"
+      ],
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/translate",
+          "purpose": "Translate text; API key requirement depends on the instance configuration.",
+          "docs_url": "https://docs.libretranslate.com/guides/api_usage/"
+        }
+      ],
+      "authentication": {
+        "kind": "none",
+        "required": false,
+        "notes": "Authentication varies by instance. This record does not assume that the public host accepts a particular API-key header or query method. Review current instance documentation; configure custom catalog auth for a self-hosted or paid endpoint."
+      },
+      "free_status": "UNKNOWN",
+      "quota": {
+        "details": "Self-host software is available under AGPLv3; compute, hosting, language packs, and configured limits are the operator's responsibility. The public hosted service is not represented as free."
+      },
+      "rate_limits": {
+        "details": "Self-hosted key limits are operator-configured; official docs show examples, not a universal hosted quota."
+      },
+      "license": {
+        "service": "LibreTranslate server is AGPLv3; public hosting has separate terms.",
+        "data": "Translation model and language-pack licenses can vary; check each installed model.",
+        "notes": "AGPL obligations can apply when modifying or providing the software as a network service."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "Official API docs include a basic JSON request; this package makes no claim about a maintained Python SDK."
+        }
+      ],
+      "privacy": "Self-hosting keeps traffic under the operator's control subject to their infrastructure; hosted instances receive text submitted for translation. Avoid sensitive text on third-party instances.",
+      "cors": {
+        "status": "unknown",
+        "notes": "CORS depends on the selected server configuration; not verified as a universal capability."
+      },
+      "sources": [
+        {
+          "url": "https://docs.libretranslate.com/guides/api_usage/",
+          "title": "LibreTranslate API usage and per-instance key behavior",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://docs.libretranslate.com/guides/manage_api_keys/",
+          "title": "LibreTranslate self-host API key and configurable limits",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://github.com/LibreTranslate/LibreTranslate",
+          "title": "LibreTranslate source repository and license",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "medium",
+      "health_probe": null
+    },
+    {
+      "id": "twilio-messaging",
+      "type": "api",
+      "name": "Twilio Programmable Messaging API",
+      "categories": [
+        "communication",
+        "automation",
+        "development"
+      ],
+      "capabilities": [
+        "send SMS/MMS",
+        "read message status",
+        "manage messages",
+        "messaging webhooks"
+      ],
+      "summary": "Paid communications API. Destination, channel, sender, and country affect costs and throughput.",
+      "base_url": "https://api.twilio.com/2010-04-01",
+      "allowed_hosts": [
+        "api.twilio.com"
+      ],
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/Accounts/{AccountSid}/Messages.json",
+          "purpose": "Create an outbound message resource; replace AccountSid with the account identifier.",
+          "docs_url": "https://www.twilio.com/docs/messaging/api/message-resource"
+        }
+      ],
+      "authentication": {
+        "kind": "http_basic_pair",
+        "required": true,
+        "username_env": "TWILIO_ACCOUNT_SID",
+        "password_env": "TWILIO_AUTH_TOKEN",
+        "notes": "HTTP Basic authentication; never log or expose either value. Sending messages may incur charges and has external side effects."
+      },
+      "free_status": "PAID",
+      "quota": {
+        "details": "Messaging is priced by destination/channel and account configuration; no free recurring API tier is asserted. Review current regional pricing before sending."
+      },
+      "rate_limits": {
+        "details": "Throughput depends on sender type, destination, and account configuration; no universal limit is asserted in the reviewed Message resource page."
+      },
+      "license": {
+        "service": "Twilio service terms and messaging policies apply.",
+        "data": "Message content and recipient data are personal data; message transmission and retention are governed by Twilio terms and applicable laws.",
+        "notes": "Use only with the necessary recipient consent and lawful basis."
+      },
+      "sdk": [
+        {
+          "name": "twilio-python",
+          "type": "Python",
+          "status": "Official Twilio Python helper library.",
+          "url": "https://github.com/twilio/twilio-python"
+        }
+      ],
+      "privacy": "Twilio's Message resource marks body content as PII with a 30-day retention label. Messages contain recipient and content data; minimize collection and review regional privacy/retention terms.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Messaging credentials are server-side; browser CORS behavior was not established in the reviewed endpoint page."
+      },
+      "sources": [
+        {
+          "url": "https://www.twilio.com/docs/messaging/api/message-resource",
+          "title": "Twilio Messages endpoint and PII field labels",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_direct"
+        },
+        {
+          "url": "https://www.twilio.com/docs/messaging/pricing",
+          "title": "Twilio Messaging regional pricing",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://github.com/twilio/twilio-python",
+          "title": "Twilio Python SDK",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "medium",
+      "health_probe": null
+    },
+    {
+      "id": "wolfram-alpha",
+      "type": "api",
+      "name": "Wolfram|Alpha Full Results API",
+      "categories": [
+        "math",
+        "science",
+        "education",
+        "data"
+      ],
+      "capabilities": [
+        "computational knowledge",
+        "math queries",
+        "unit conversion",
+        "structured results"
+      ],
+      "summary": "Wolfram|Alpha query API with a free non-commercial development account and paid query plans.",
+      "base_url": "https://api.wolframalpha.com/v2",
+      "allowed_hosts": [
+        "api.wolframalpha.com"
+      ],
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/query",
+          "purpose": "Submit an input query using an AppID; responses may be XML or other documented formats.",
+          "docs_url": "https://products.wolframalpha.com/api/documentation"
+        }
+      ],
+      "authentication": {
+        "kind": "api_key_query",
+        "required": true,
+        "env_var": "WOLFRAMALPHA_APP_ID",
+        "parameter": "appid",
+        "notes": "AppID required; keep it out of shared URLs, source code, and logs."
+      },
+      "free_status": "FREE_TIER_LIMITED",
+      "quota": {
+        "details": "Official pricing page advertises a free non-commercial development account, but the numeric free query allowance was not verified. Paid standard pricing lists $25 per 1,000 queries for Simple/Short Answers/Instant Calculator and $50 per 1,000 for Full Results; confirm current plan and commercial rights."
+      },
+      "rate_limits": {
+        "details": "No numeric free-account rate limit was established in the reviewed docs."
+      },
+      "license": {
+        "service": "Wolfram|Alpha API terms and plan-specific restrictions apply.",
+        "data": "Returned results may contain source-attributed or copyrighted material; obey the API terms and attribution requirements.",
+        "notes": "Free development plan is stated as non-commercial; commercial use needs an appropriate paid license."
+      },
+      "sdk": [
+        {
+          "name": "REST/HTTP",
+          "status": "No provider-maintained Python SDK verified in the reviewed pages."
+        }
+      ],
+      "privacy": "Queries are sent to Wolfram|Alpha and may contain user-provided text; do not send sensitive information without checking current terms.",
+      "cors": {
+        "status": "unknown",
+        "notes": "Browser CORS and safe AppID exposure were not verified; keep AppID server-side."
+      },
+      "sources": [
+        {
+          "url": "https://products.wolframalpha.com/api/pricing",
+          "title": "Wolfram|Alpha query pricing and development account",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        },
+        {
+          "url": "https://products.wolframalpha.com/api/documentation",
+          "title": "Wolfram|Alpha API v2 query endpoint and AppID",
+          "checked_on": "2026-11-12",
+          "evidence_level": "primary_search_result"
+        }
+      ],
+      "last_verified": "2026-11-12",
+      "evidence_confidence": "medium",
+      "health_probe": null
+    }
+  ]
+}

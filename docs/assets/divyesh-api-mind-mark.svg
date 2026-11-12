@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">DIVYESH API MIND mark</title>
+  <desc id="desc">Three evidence nodes connected to a central catalog hub.</desc>
+  <rect x="4" y="4" width="120" height="120" rx="26" fill="#10243a"/>
+  <path d="M40 38 63 63M88 38 65 63M40 90 63 65" fill="none" stroke="#80d6c7" stroke-linecap="round" stroke-width="5"/>
+  <circle cx="35" cy="33" r="13" fill="#4fd1c5"/>
+  <circle cx="93" cy="33" r="13" fill="#f2b84b"/>
+  <circle cx="35" cy="95" r="13" fill="#93b5ff"/>
+  <circle cx="65" cy="64" r="22" fill="#f5f7fb"/>
+  <path d="M57 56h16v16H57z" fill="none" stroke="#10243a" stroke-linejoin="round" stroke-width="4"/>
+  <path d="M57 61h16M57 67h10" fill="none" stroke="#10243a" stroke-linecap="round" stroke-width="3"/>
+</svg>

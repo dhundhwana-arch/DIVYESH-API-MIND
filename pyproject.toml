@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "divyesh-api-mind"
+version = "0.1.0"
+description = "Evidence-backed API, model, dataset, and MCP intelligence with safe Python connectors"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "dhundhwana-arch" }]
+keywords = ["api-catalog", "api-client", "mcp", "open-data", "research"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = []
+
+[project.scripts]
+apimind = "divyesh_api_mind.cli:main"
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+discovery-yaml = ["PyYAML>=6"]
+
+[project.urls]
+Homepage = "https://github.com/dhundhwana-arch/DIVYESH-API-MIND"
+Repository = "https://github.com/dhundhwana-arch/DIVYESH-API-MIND"
+Issues = "https://github.com/dhundhwana-arch/DIVYESH-API-MIND/issues"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+divyesh_api_mind = ["data/*.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

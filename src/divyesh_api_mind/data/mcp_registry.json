@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "last_updated": "2026-11-12",
+  "registry_source": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=10",
+  "definitions": {
+    "directory_entry": "Metadata was observed in the official registry. This is not a code review, runtime probe, or integration test.",
+    "reviewed_repository": "A repository was reviewed at the stated scope. This is not a security audit or proof that a server works.",
+    "working_integration": "Reserved for a server that has passed an explicitly recorded end-to-end protocol/tool test. There are no records in this state yet."
+  },
+  "records": [
+    {
+      "id": "official-mcp-registry", "type": "directory", "status": "directory_entry", "name": "Official MCP Registry",
+      "description": "Read-only metadata directory for published MCP server versions. Registry status means metadata status only; it does not report uptime or safety.",
+      "base_url": "https://registry.modelcontextprotocol.io", "endpoints": ["GET /v0.1/servers", "GET /v0.1/servers/{serverName}/versions", "GET /v0.1/servers/{serverName}/versions/{version}"],
+      "authentication": "Registry reads are unauthenticated; write/publish workflow is outside this catalog.",
+      "official_registry_status": "preview", "last_verified": "2026-11-12", "health_checked": false,
+      "verification_scope": "Fetched registry metadata and read aggregator docs. No server transport handshake or tool call was performed.",
+      "sources": [
+        {"url": "https://modelcontextprotocol.io/registry/registry-aggregators", "title": "Official MCP Registry read-only API, pagination, preview, and no-uptime-guarantee notice", "checked_on": "2026-11-12", "evidence_level": "primary_direct"},
+        {"url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=10", "title": "Official registry metadata sample fetched during research", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}
+      ]
+    },
+    {
+      "id": "modelcontextprotocol-reference-servers", "type": "repository", "status": "reviewed_repository", "name": "Model Context Protocol Reference Servers",
+      "description": "Reference implementations and examples maintained by the MCP steering group; official README says they are educational examples, not production-ready solutions.",
+      "repository_url": "https://github.com/modelcontextprotocol/servers", "server_examples": ["Everything", "Fetch", "Filesystem", "Git", "Memory", "Sequential Thinking", "Time"],
+      "archived_examples": ["AWS KB Retrieval", "Brave Search", "EverArt", "GitHub", "GitLab", "Google Drive", "Google Maps", "PostgreSQL", "Puppeteer", "Redis", "Sentry", "Slack", "SQLite"],
+      "authentication": "Varies by individual reference/example; no credentials or server processes are bundled into this metadata registry.",
+      "official_registry_status": "repository", "last_verified": "2026-11-12", "health_checked": false,
+      "verification_scope": "Reviewed the repository README and license notice only. Individual implementation code, dependencies, transport behavior, and runtime health were not audited or tested.",
+      "sources": [
+        {"url": "https://github.com/modelcontextprotocol/servers/blob/main/README.md", "title": "Official reference-server list and production-readiness warning", "checked_on": "2026-11-12", "evidence_level": "primary_direct"},
+        {"url": "https://github.com/modelcontextprotocol/servers/blob/main/LICENSE", "title": "Repository license-transition notice", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}
+      ]
+    },
+    {
+      "id": "ac.inference.sh/mcp", "type": "server", "status": "directory_entry", "name": "inference.sh",
+      "description": "Official registry entry advertises hosted AI apps/models over remote Streamable HTTP.",
+      "remote_urls": ["https://api.inference.sh/mcp"], "version": "2.0.1", "official_registry_status": "active",
+      "registry_published_at": "2026-07-27T10:44:51.359634Z", "registry_updated_at": "2026-07-27T10:44:51.359634Z",
+      "authentication": "Not established from the registry metadata alone; review publisher docs before connecting.",
+      "license": "Not established from the registry metadata.", "privacy": "Not established; remote request data goes to the service operator.",
+      "last_verified": "2026-11-12", "health_checked": false,
+      "verification_scope": "Registry metadata only. Remote URL was not contacted; no MCP initialize/list-tools/call-tools handshake was performed.",
+      "trust_note": "Treat as unreviewed third-party code/service; do not send credentials or sensitive data without independent review.",
+      "sources": [{"url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=10", "title": "Official registry record observed in first page", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}]
+    },
+    {
+      "id": "ac.mizan/registry", "type": "server", "status": "directory_entry", "name": "Mizan",
+      "description": "Official registry description says it provides player-ban records; the registry says public reads need no key.",
+      "remote_urls": ["https://mizan.ac/mcp"], "version": "1.2.0", "official_registry_status": "active",
+      "registry_published_at": "2026-11-05T23:35:33.188176Z", "registry_updated_at": "2026-11-05T23:35:33.188176Z",
+      "authentication": "Registry description says public tools need no key; no independent auth test was performed.",
+      "license": "Not established from the registry metadata.", "privacy": "Not established; remote server operator receives tool requests.",
+      "last_verified": "2026-11-12", "health_checked": false,
+      "verification_scope": "Registry metadata only. Remote URL was not contacted and no tools were invoked.",
+      "trust_note": "Treat as unreviewed third-party service; independently review its source, policies, and data provenance.",
+      "sources": [{"url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=10", "title": "Official registry record observed in first page", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}]
+    },
+    {
+      "id": "ac.snag/snag", "type": "server", "status": "directory_entry", "name": "Snag",
+      "description": "Official registry entry describes a remote tool for captured console, network, replay, and screenshot evidence.",
+      "remote_urls": ["https://mcp.snag.ac/mcp"], "version": "1.0.0", "official_registry_status": "active",
+      "registry_published_at": "2026-09-09T10:35:53.194664Z", "registry_updated_at": "2026-09-09T10:35:53.194664Z",
+      "authentication": "Not specified in the observed registry record; verify publisher docs before connecting.",
+      "license": "Not established from registry metadata.", "privacy": "May process captured application logs/network evidence; review publisher retention and data handling before sending.",
+      "last_verified": "2026-11-12", "health_checked": false,
+      "verification_scope": "Registry metadata only. Remote URL was not contacted; no transport handshake or tool call was performed.",
+      "trust_note": "Treat as unreviewed third-party service; captured evidence can contain secrets or personal data.",
+      "sources": [{"url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=10", "title": "Official registry record observed in first page", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}]
+    },
+    {
+      "id": "ac.tandem/docs-mcp", "type": "server", "status": "directory_entry", "name": "Tandem Docs MCP",
+      "description": "Official registry describes a remote docs/install/SDK/workflow server.",
+      "remote_urls": ["https://tandem.ac/mcp"], "repository_url": "https://github.com/frumu-ai/tandem", "version": "0.3.2", "official_registry_status": "active",
+      "registry_published_at": "2026-04-22T21:06:34.500049Z", "registry_updated_at": "2026-04-22T21:06:34.500049Z",
+      "authentication": "Not specified in the observed registry record; verify publisher docs before connecting.",
+      "license": "Not established from registry metadata.", "privacy": "Review publisher policy before sharing prompts or workspace details.",
+      "last_verified": "2026-11-12", "health_checked": false,
+      "verification_scope": "Registry metadata only. Repository contents and remote server were not reviewed or tested.",
+      "trust_note": "Directory listing is not a recommendation or proof of operation.",
+      "sources": [{"url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=10", "title": "Official registry record observed in first page", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}]
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "last_updated": "2026-11-12",
+  "records": [
+    {
+      "id": "openalex-snapshot", "type": "dataset", "name": "OpenAlex scholarly metadata and public snapshot", "categories": ["research", "data", "open-data", "education"],
+      "capabilities": ["scholarly metadata", "works", "authors", "institutions", "topics", "citation graph"],
+      "summary": "Open bibliographic graph available through an API and bulk snapshot. The snapshot is free and CC0; fresher daily sync is a paid service.",
+      "provider": "OpenAlex", "api_ids": ["openalex"], "free_status": "FREE_DATA_PAID_SERVICE",
+      "access": "API supports keyless basic queries with a small budget; an activated free key raises budget. Public snapshot is free; quarterly releases are listed for the free tier, while daily snapshots/premium sync are paid. Check current API costs before bulk downloads.",
+      "license": {"name": "CC0", "notes": "OpenAlex states all metadata and the snapshot are CC0. Third-party content referenced by metadata, such as full-text PDFs, can have separate rights."},
+      "update_cadence": "The public snapshot documentation lists quarterly releases; paid plans offer daily full snapshots. API records update as provider data is ingested.",
+      "authentication": "No API key for basic API use or public snapshot download; a free API key increases API budget and enables cursor paging.",
+      "quota_and_rate_limits": "API budget is distinct from snapshot download. Current docs list $0.10/day without a key and $1/day with an activated free key; endpoint costs vary.",
+      "privacy": "Searches and usage are sent to OpenAlex; review provider privacy terms before using personal or sensitive search strings.",
+      "sources": [
+        {"url": "https://help.openalex.org/api/", "title": "OpenAlex API reference and CC0 data statement", "checked_on": "2026-11-12", "evidence_level": "primary_search_result"},
+        {"url": "https://help.openalex.org/access/sync/", "title": "OpenAlex public snapshot cadence and paid daily sync", "checked_on": "2026-11-12", "evidence_level": "primary_search_result"},
+        {"url": "https://help.openalex.org/api/authentication/", "title": "OpenAlex authentication and daily budgets", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}
+      ],
+      "last_verified": "2026-11-12", "evidence_confidence": "high"
+    },
+    {
+      "id": "crossref-metadata", "type": "dataset", "name": "Crossref DOI registration metadata", "categories": ["research", "data", "open-data", "education"],
+      "capabilities": ["DOI metadata", "bibliographic records", "funders", "journals", "publication discovery"],
+      "summary": "Metadata deposited by Crossref members and exposed through the public REST API.",
+      "provider": "Crossref", "api_ids": ["crossref"], "free_status": "FREE_NO_KEY",
+      "access": "Public REST API without registration; bulk/query behavior is subject to Crossref usage controls and 403/429 blocking.",
+      "license": {"name": "CC0 for Crossref-generated metadata", "notes": "Some fields, especially abstracts, may remain copyrighted by publishers/authors. API access does not grant full-text redistribution rights."},
+      "update_cadence": "Members deposit records on their own schedules; Crossref's site reports ongoing daily deposits. Treat record freshness as item-specific.",
+      "authentication": "No key required for API reads.",
+      "quota_and_rate_limits": "No single numeric rate quota recorded here; respect Crossref service guidance and response codes.",
+      "privacy": "Search queries are disclosed to Crossref. Avoid personal data in query strings.",
+      "sources": [
+        {"url": "https://api.crossref.org/swagger-ui/index.html", "title": "Crossref REST API metadata methods", "checked_on": "2026-11-12", "evidence_level": "primary_direct"},
+        {"url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/", "title": "Crossref metadata retrieval and reuse guidance", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}
+      ],
+      "last_verified": "2026-11-12", "evidence_confidence": "high"
+    },
+    {
+      "id": "world-bank-indicators-dataset", "type": "dataset", "name": "World Bank Indicators API data", "categories": ["data", "government", "finance", "research", "open-data"],
+      "capabilities": ["development indicators", "country statistics", "economic time series", "social indicators"],
+      "summary": "Nearly 16,000 time-series indicators across more than 45 databases, available through Indicators API v2.",
+      "provider": "World Bank", "api_ids": ["world-bank-indicators"], "free_status": "FREE_NO_KEY",
+      "access": "V2 API access does not require API keys or other authentication. Individual data products can have their own terms; inspect the dataset record before redistribution.",
+      "license": {"name": "Varies by dataset", "notes": "World Bank developer docs point to dataset-specific Terms of Use. No single CC license is asserted for every indicator/database."},
+      "update_cadence": "Varies by indicator and source; data series may date back decades and are updated according to the supplying dataset.",
+      "authentication": "No API key required for Indicators API v2.",
+      "quota_and_rate_limits": "No numeric general API quota established in the reviewed documentation; use bounded pagination and obey terms.",
+      "privacy": "Public aggregate indicators; avoid submitting personal information in custom filters or logs.",
+      "sources": [
+        {"url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation", "title": "Indicators API coverage, v2, and no-auth rule", "checked_on": "2026-11-12", "evidence_level": "primary_direct"},
+        {"url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview", "title": "World Bank API types and dataset-specific terms", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}
+      ],
+      "last_verified": "2026-11-12", "evidence_confidence": "high"
+    },
+    {
+      "id": "census-acs-5year", "type": "dataset", "name": "U.S. Census American Community Survey 5-year estimates", "categories": ["government", "data", "location", "research", "open-data"],
+      "capabilities": ["demographics", "social statistics", "economic statistics", "housing", "small-area geography"],
+      "summary": "ACS 5-year tables, profiles, and estimates for U.S. geographies; the 2020-2024 release is listed in the current Census page.",
+      "provider": "U.S. Census Bureau", "api_ids": ["census-data"], "free_status": "FREE_WITH_KEY",
+      "access": "Census Data API queries require a free registered API key. Data coverage and variable definitions vary by year/product; use the release-specific documentation.",
+      "license": {"name": "Dataset-specific U.S. Census terms", "notes": "No blanket redistribution license is asserted for all Census products; review notices and release-specific restrictions. Data are statistical estimates, not exact counts for every use."},
+      "update_cadence": "Annual ACS releases; 5-year overlapping estimates should be compared using Census comparability guidance.",
+      "authentication": "Free Census API key required in query parameter `key` for all data queries.",
+      "quota_and_rate_limits": "The current user guide says at most 50 variables per query. A general daily request quota was not established in the reviewed guide.",
+      "privacy": "ACS publishes statistical estimates; avoid joining small-area outputs with other records in ways that could re-identify people.",
+      "sources": [
+        {"url": "https://www.census.gov/data/developers/data-sets/acs-5year.html", "title": "ACS 5-year data coverage and current API-key requirement", "checked_on": "2026-11-12", "evidence_level": "primary_direct"},
+        {"url": "https://www.census.gov/data/developers/guidance/api-user-guide.API_Key.html", "title": "Free API key instructions", "checked_on": "2026-11-12", "evidence_level": "primary_direct"},
+        {"url": "https://www.census.gov/data/developers/guidance/api-user-guide.Query_Limits.html", "title": "Census query variable limit and required key", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}
+      ],
+      "last_verified": "2026-11-12", "evidence_confidence": "high"
+    },
+    {
+      "id": "nvd-vulnerability-data", "type": "dataset", "name": "NVD vulnerability and CVE records", "categories": ["security", "development", "government", "data", "open-data"],
+      "capabilities": ["CVE records", "CPE records", "vulnerability search", "security triage"],
+      "summary": "NIST National Vulnerability Database records served through the NVD API and bulk resources.",
+      "provider": "NIST NVD", "api_ids": ["nvd"], "free_status": "FREE_TIER_LIMITED",
+      "access": "Public NVD API and downloads; unauthenticated reads have a lower rate limit. An optional key raises the documented request ceiling.",
+      "license": {"name": "U.S. public-domain NIST publications", "notes": "NVD requests a visible notice and forbids implying NVD endorsement or certification."},
+      "update_cadence": "CVE/NVD records change over time; NIST recommends incremental updates using last-modified dates and not polling more than once every two hours for automated maintenance.",
+      "authentication": "No key for public access; optional API key in the `apiKey` request header.",
+      "quota_and_rate_limits": "5 requests per rolling 30 seconds without a key; 50 per rolling 30 seconds with a key, per NIST documentation.",
+      "privacy": "Queries reveal CVE/CPE terms and requester metadata; do not include private vulnerability details in public queries.",
+      "sources": [
+        {"url": "https://nvd.nist.gov/developers/start-here", "title": "NVD public domain, rate limits, and update practices", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}
+      ],
+      "last_verified": "2026-11-12", "evidence_confidence": "high"
+    },
+    {
+      "id": "arxiv-records", "type": "dataset", "name": "arXiv preprint metadata and papers", "categories": ["research", "science", "math", "education", "open-data"],
+      "capabilities": ["preprint discovery", "paper metadata", "physics", "mathematics", "computer science"],
+      "summary": "Public arXiv API provides search and metadata for scholarly preprints; article content rights remain record-specific.",
+      "provider": "arXiv", "api_ids": ["arxiv"], "free_status": "FREE_NO_KEY",
+      "access": "Public API requires no key; legacy API access must be serialized to one request every three seconds across the operator's machines.",
+      "license": {"name": "Per-paper copyright/license", "notes": "arXiv is not the copyright holder of every paper. Redistribution of e-prints requires permission or an applicable permissive paper license."},
+      "update_cadence": "New submissions and revisions are published on arXiv's schedule; record-level publication and update times are supplied in metadata.",
+      "authentication": "No key for public API search.",
+      "quota_and_rate_limits": "No more than one legacy API request every three seconds, one connection at a time; do not distribute requests across machines to bypass the limit.",
+      "privacy": "Queries are sent to arXiv. API users are asked to acknowledge arXiv interoperability and avoid implying endorsement.",
+      "sources": [
+        {"url": "https://info.arxiv.org/help/api/basics.html", "title": "arXiv API access, search, and metadata", "checked_on": "2026-11-12", "evidence_level": "primary_direct"},
+        {"url": "https://info.arxiv.org/help/api/tou.html", "title": "arXiv API rate limits and e-print redistribution terms", "checked_on": "2026-11-12", "evidence_level": "primary_search_result"}
+      ],
+      "last_verified": "2026-11-12", "evidence_confidence": "high"
+    },
+    {
+      "id": "sec-edgar-companyfacts", "type": "dataset", "name": "SEC EDGAR submissions and XBRL company facts", "categories": ["finance", "government", "data", "research", "open-data"],
+      "capabilities": ["company filings", "XBRL facts", "issuer submissions", "financial statements"],
+      "summary": "Public SEC JSON endpoints aggregate company submissions and selected XBRL facts; bulk archives are rebuilt nightly.",
+      "provider": "U.S. Securities and Exchange Commission", "api_ids": ["sec-edgar"], "free_status": "FREE_NO_KEY",
+      "access": "No API key or authentication required for the documented data.sec.gov submissions and XBRL APIs. Automated access must follow SEC access policies.",
+      "license": {"name": "Public SEC filings with item-specific rights", "notes": "Public access is not a blanket license to third-party exhibit content. Preserve filing-source context and comply with SEC policy."},
+      "update_cadence": "Submissions and XBRL APIs are updated during the day as filings are disseminated; bulk ZIP archives are republished nightly.",
+      "authentication": "No authentication for submissions/XBRL data endpoints.",
+      "quota_and_rate_limits": "Numeric quota not stated on the reviewed API page; comply with SEC fair-access guidance and identify the client appropriately.",
+      "privacy": "Requests disclose queried CIKs and client metadata. Company facts are public, but do not send confidential data to public endpoints.",
+      "sources": [
+        {"url": "https://www.sec.gov/edgar/sec-api-documentation", "title": "SEC EDGAR endpoint, authentication, CORS, update cadence, and bulk data", "checked_on": "2026-11-12", "evidence_level": "primary_direct"}
+      ],
+      "last_verified": "2026-11-12", "evidence_confidence": "high"
+    },
+    {
+      "id": "india-mandi-prices-discovery", "type": "dataset", "name": "India OGD daily mandi prices (discovery lead only)", "categories": ["government", "finance", "data", "location", "open-data"],
+      "capabilities": ["commodity price discovery", "market metadata", "India open government data"],
+      "summary": "A search-result lead identified a Government of India daily mandi-price resource (resource UUID 9ef84268-d588-465a-a308-a864a43d0070). The official portal/API did not load successfully during this research, so this record is not a verified connector or access claim.",
+      "provider": "data.gov.in / Government of India portal (lead; not verified)", "api_ids": [], "free_status": "UNKNOWN",
+      "access": "Discovery only. The official data.gov.in API pages returned an Akamai/HTTP 500 error when fetched. A secondary article describes an API-key URL pattern, but this repository has not verified endpoint shape, key policy, quotas, availability, or dataset-specific terms. Do not call or redistribute based on this lead alone.",
+      "license": {"name": "UNKNOWN", "notes": "Dataset-specific license was not verified; do not assume open licensing from portal presence."},
+      "update_cadence": "Unverified. Search result described daily market prices, but official dataset metadata was not available for verification.",
+      "authentication": "UNKNOWN; secondary source claims a key may be required, but official confirmation failed.",
+      "quota_and_rate_limits": "UNKNOWN; no quota or service limits verified.",
+      "privacy": "Not evaluated. Treat external calls as unverified until the official portal and dataset terms are reviewed.",
+      "sources": [
+        {"url": "https://www.data.gov.in/", "title": "Official OGD portal (fetch failed during this review; discovery only)", "checked_on": "2026-11-12", "evidence_level": "primary_fetch_failed"},
+        {"url": "https://themineworks.com/blog/india-government-data-api/", "title": "Secondary data.gov.in API overview (not used as verification of quota/license)", "checked_on": "2026-11-12", "evidence_level": "secondary_search_result"}
+      ],
+      "last_verified": "2026-11-12", "evidence_confidence": "low", "discovery_only": true
+    }
+  ]
+}

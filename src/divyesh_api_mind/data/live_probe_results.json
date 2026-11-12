@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "scope": "One unauthenticated read-only GET per provider; no response payloads or credentials are stored.",
+  "transport": {
+    "timeout_seconds": 5.0,
+    "retries": 0,
+    "max_response_bytes": 1048576,
+    "redirects": "refused"
+  },
+  "credential_handling": "APIMind was given an empty environment mapping for these probes; no credentials were sent or logged.",
+  "results": [
+    {
+      "api_id": "github-rest",
+      "request": {
+        "method": "GET",
+        "host": "api.github.com",
+        "path": "/repos/public-apis/public-apis"
+      },
+      "status": "healthy",
+      "http_status": 200,
+      "checked_at": "2026-11-12T07:57:17.815735+00:00",
+      "latency_ms": 754.35,
+      "error": null
+    },
+    {
+      "api_id": "pypi-json",
+      "request": {
+        "method": "GET",
+        "host": "pypi.org",
+        "path": "/pypi/pip/json"
+      },
+      "status": "healthy",
+      "http_status": 200,
+      "checked_at": "2026-11-12T07:57:18.570378+00:00",
+      "latency_ms": 269.66,
+      "error": null
+    },
+    {
+      "api_id": "npm-registry",
+      "request": {
+        "method": "GET",
+        "host": "registry.npmjs.org",
+        "path": "/is-number"
+      },
+      "status": "healthy",
+      "http_status": 200,
+      "checked_at": "2026-11-12T07:57:18.840238+00:00",
+      "latency_ms": 78.64,
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,3172 @@
+{
+  "schema_version": "1.0",
+  "generated_on": "2026-11-12",
+  "source": {
+    "format": "combined-review-queues",
+    "checked_on": "2026-11-12",
+    "sources": [
+      {
+        "format": "openapi-spec",
+        "url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/nasa.gov/apod/1.0.0/openapi.yaml",
+        "checked_on": "2026-11-12",
+        "repository_attribution": {
+          "repository": "https://github.com/APIs-guru/openapi-directory",
+          "revision": "f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49",
+          "file": "APIs/nasa.gov/apod/1.0.0/openapi.yaml",
+          "checked_on": "2026-11-12",
+          "spec_license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+          },
+          "repository_license_note": "Repository-wide license metadata may not establish a third-party API's service/data license; review per-file provenance and provider terms."
+        },
+        "source_content_sha256": "7e867ea379c50fd5affbee1c01e38850681fbf368e7c9acd05249ecbdf4e5bd2",
+        "license": "UNKNOWN for the API; the spec's info.license is recorded separately and is not assumed to cover the service or data."
+      },
+      {
+        "format": "openapi-spec",
+        "url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/api.gov.uk/vehicle-enquiry/1.1.0/openapi.yaml",
+        "checked_on": "2026-11-12",
+        "repository_attribution": {
+          "repository": "https://github.com/APIs-guru/openapi-directory",
+          "revision": "f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49",
+          "file": "APIs/api.gov.uk/vehicle-enquiry/1.1.0/openapi.yaml",
+          "checked_on": "2026-11-12",
+          "spec_license": {
+            "name": "UNKNOWN",
+            "url": null
+          },
+          "repository_license_note": "Repository-wide license metadata may not establish a third-party API's service/data license; review per-file provenance and provider terms."
+        },
+        "source_content_sha256": "a75e7f0933bbee50daf6981407351f5481abce4ece0feafc560e62a6fc7bedeb",
+        "license": "UNKNOWN for the API; the spec's info.license is recorded separately and is not assumed to cover the service or data."
+      },
+      {
+        "format": "openapi-spec",
+        "url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/googleapis.com/youtube/v3/openapi.yaml",
+        "checked_on": "2026-11-12",
+        "repository_attribution": {
+          "repository": "https://github.com/APIs-guru/openapi-directory",
+          "revision": "f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49",
+          "file": "APIs/googleapis.com/youtube/v3/openapi.yaml",
+          "checked_on": "2026-11-12",
+          "spec_license": {
+            "name": "Creative Commons Attribution 3.0",
+            "url": "http://creativecommons.org/licenses/by/3.0/"
+          },
+          "repository_license_note": "Repository-wide license metadata may not establish a third-party API's service/data license; review per-file provenance and provider terms."
+        },
+        "source_content_sha256": "f1ae19ea6c97060155df0557286203382b9c772958c031bf66583f524d014917",
+        "license": "UNKNOWN for the API; the spec's info.license is recorded separately and is not assumed to cover the service or data."
+      }
+    ],
+    "license_context": "APIs.guru states that contributed definitions are CC0-1.0 and that some definitions were acquired from public sources under fair use. Per-file provenance may vary; neither a specification license nor repository license establishes the API service or data license."
+  },
+  "policy": {
+    "free_status": "UNKNOWN",
+    "automatic_catalog_promotion": false,
+    "note": "Directory/spec metadata is a discovery lead only. Verify official docs, authentication, quotas, rates, terms, and licensing before promotion."
+  },
+  "counts": {
+    "source_rows": 3,
+    "unique_candidates": 3,
+    "exact_duplicate_rows_merged": 0,
+    "possible_duplicate_candidates": 0,
+    "categories": 33,
+    "needs_review": 3
+  },
+  "candidates": [
+    {
+      "candidate_id": "candidate-apod-fb659cb117",
+      "type": "api_candidate",
+      "name": "APOD",
+      "summary": "This endpoint structures the APOD imagery and associated metadata so that it can be repurposed for other applications. In addition, if the concept_tags parameter is set to True, then keywords derived from the image explanation are returned. These keywords could be used as auto-generated hashtags for twitter or instagram feeds; but generally help with discoverability of relevant imagery",
+      "base_url": "https://api.nasa.gov/planetary",
+      "server_resolution": "first declared public HTTPS server",
+      "listed_url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/nasa.gov/apod/1.0.0/openapi.yaml",
+      "listed_url_role": "OpenAPI specification source; not independently confirmed as provider-owned",
+      "endpoint_count_in_spec": 1,
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/apod",
+          "summary": "Returns images",
+          "tags": [
+            "request tag"
+          ]
+        }
+      ],
+      "tags": [
+        "request tag"
+      ],
+      "categories": [
+        "request tag"
+      ],
+      "authentication": {
+        "kind": "unknown",
+        "required": false,
+        "verified": false
+      },
+      "authentication_evidence": {
+        "declared_by_spec": true,
+        "scheme_names": [
+          "api_key"
+        ],
+        "scheme_details": {
+          "api_key": {
+            "type": "apiKey",
+            "in": "query",
+            "name": "api_key"
+          }
+        },
+        "global_security_declared": false,
+        "global_security": null,
+        "operation_security": [
+          {
+            "path": "/apod",
+            "method": "GET",
+            "requirements": [
+              {
+                "api_key": []
+              }
+            ]
+          }
+        ],
+        "reviewed": false,
+        "warning": "OpenAPI security declarations are source claims; verify them against current official provider docs."
+      },
+      "free_status": "UNKNOWN",
+      "quota": "UNKNOWN",
+      "rate_limits": "UNKNOWN",
+      "license": "UNKNOWN",
+      "spec_license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "checked_on": "2026-11-12",
+      "review_status": "needs_primary_source_review",
+      "review_reasons": [
+        "Verify that the current specification is published or endorsed by the API provider.",
+        "Verify auth semantics and any required credential scopes from official documentation.",
+        "OpenAPI spec licensing does not establish API/data licensing; review the service terms.",
+        "No free-tier, quota, or rate-limit claim is inferred from the specification."
+      ],
+      "evidence_sources": [
+        {
+          "url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/nasa.gov/apod/1.0.0/openapi.yaml",
+          "title": "OpenAPI 3.0.0 specification: APOD",
+          "checked_on": "2026-11-12",
+          "evidence_level": "spec_import_not_independently_verified"
+        }
+      ],
+      "source_attributions": [
+        {
+          "spec_url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/nasa.gov/apod/1.0.0/openapi.yaml",
+          "openapi_version": "3.0.0",
+          "checked_on": "2026-11-12",
+          "spec_license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+          },
+          "repository": "https://github.com/APIs-guru/openapi-directory",
+          "revision": "f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49",
+          "file": "APIs/nasa.gov/apod/1.0.0/openapi.yaml",
+          "repository_license_note": "Repository-wide license metadata may not establish a third-party API's service/data license; review per-file provenance and provider terms."
+        }
+      ],
+      "possible_duplicate_flags": [],
+      "possible_existing_matches": [
+        "nasa-open-apis"
+      ],
+      "source_claims_by_source": []
+    },
+    {
+      "candidate_id": "candidate-vehicle-enquiry-api-2c2e545825",
+      "type": "api_candidate",
+      "name": "Vehicle Enquiry API",
+      "summary": "Interface specification for the DVLA Vehicle Enquiry API",
+      "base_url": "https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry",
+      "server_resolution": "first declared public HTTPS server",
+      "listed_url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/api.gov.uk/vehicle-enquiry/1.1.0/openapi.yaml",
+      "listed_url_role": "OpenAPI specification source; not independently confirmed as provider-owned",
+      "endpoint_count_in_spec": 1,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/v1/vehicles",
+          "operation_id": "getVehicleDetailsByRegistrationNumber",
+          "summary": "Get vehicle details by registration number",
+          "tags": [
+            "vehicle"
+          ]
+        }
+      ],
+      "tags": [
+        "vehicle"
+      ],
+      "categories": [
+        "vehicle"
+      ],
+      "authentication": {
+        "kind": "unknown",
+        "required": false,
+        "verified": false
+      },
+      "authentication_evidence": {
+        "declared_by_spec": false,
+        "scheme_names": [],
+        "scheme_details": {},
+        "global_security_declared": false,
+        "global_security": null,
+        "operation_security": [],
+        "reviewed": false,
+        "warning": "OpenAPI security declarations are source claims; verify them against current official provider docs."
+      },
+      "free_status": "UNKNOWN",
+      "quota": "UNKNOWN",
+      "rate_limits": "UNKNOWN",
+      "license": "UNKNOWN",
+      "spec_license": {
+        "name": "UNKNOWN",
+        "url": null
+      },
+      "checked_on": "2026-11-12",
+      "review_status": "needs_primary_source_review",
+      "review_reasons": [
+        "Verify that the current specification is published or endorsed by the API provider.",
+        "Verify auth semantics and any required credential scopes from official documentation.",
+        "OpenAPI spec licensing does not establish API/data licensing; review the service terms.",
+        "No free-tier, quota, or rate-limit claim is inferred from the specification."
+      ],
+      "evidence_sources": [
+        {
+          "url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/api.gov.uk/vehicle-enquiry/1.1.0/openapi.yaml",
+          "title": "OpenAPI 3.0.0 specification: Vehicle Enquiry API",
+          "checked_on": "2026-11-12",
+          "evidence_level": "spec_import_not_independently_verified"
+        }
+      ],
+      "source_attributions": [
+        {
+          "spec_url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/api.gov.uk/vehicle-enquiry/1.1.0/openapi.yaml",
+          "openapi_version": "3.0.0",
+          "checked_on": "2026-11-12",
+          "spec_license": {
+            "name": "UNKNOWN",
+            "url": null
+          },
+          "repository": "https://github.com/APIs-guru/openapi-directory",
+          "revision": "f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49",
+          "file": "APIs/api.gov.uk/vehicle-enquiry/1.1.0/openapi.yaml",
+          "repository_license_note": "Repository-wide license metadata may not establish a third-party API's service/data license; review per-file provenance and provider terms."
+        }
+      ],
+      "possible_duplicate_flags": [],
+      "possible_existing_matches": [],
+      "source_claims_by_source": []
+    },
+    {
+      "candidate_id": "candidate-youtube-data-api-v3-e1c8359956",
+      "type": "api_candidate",
+      "name": "YouTube Data API v3",
+      "summary": "The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists, and channels.",
+      "base_url": "https://youtube.googleapis.com",
+      "server_resolution": "first declared public HTTPS server",
+      "listed_url": "https://developers.google.com/youtube/",
+      "listed_url_role": "OpenAPI externalDocs URL",
+      "endpoint_count_in_spec": 80,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/youtube/v3/abuseReports",
+          "operation_id": "youtube.abuseReports.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "abuseReports"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/activities",
+          "operation_id": "youtube.activities.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "activities"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/captions",
+          "operation_id": "youtube.captions.delete",
+          "summary": "Deletes a resource.",
+          "tags": [
+            "captions"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/captions",
+          "operation_id": "youtube.captions.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "captions"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/captions",
+          "operation_id": "youtube.captions.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "captions"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/captions",
+          "operation_id": "youtube.captions.update",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "captions"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/captions/{id}",
+          "operation_id": "youtube.captions.download",
+          "summary": "Downloads a caption track.",
+          "tags": [
+            "captions"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/channelBanners/insert",
+          "operation_id": "youtube.channelBanners.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "channelBanners"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/channelSections",
+          "operation_id": "youtube.channelSections.delete",
+          "summary": "Deletes a resource.",
+          "tags": [
+            "channelSections"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/channelSections",
+          "operation_id": "youtube.channelSections.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "channelSections"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/channelSections",
+          "operation_id": "youtube.channelSections.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "channelSections"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/channelSections",
+          "operation_id": "youtube.channelSections.update",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "channelSections"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/channels",
+          "operation_id": "youtube.channels.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "channels"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/channels",
+          "operation_id": "youtube.channels.update",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "channels"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/commentThreads",
+          "operation_id": "youtube.commentThreads.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "commentThreads"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/commentThreads",
+          "operation_id": "youtube.commentThreads.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "commentThreads"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/commentThreads",
+          "operation_id": "youtube.youtube.v3.updateCommentThreads",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "youtube"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/comments",
+          "operation_id": "youtube.comments.delete",
+          "summary": "Deletes a resource.",
+          "tags": [
+            "comments"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/comments",
+          "operation_id": "youtube.comments.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "comments"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/comments",
+          "operation_id": "youtube.comments.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "comments"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/comments",
+          "operation_id": "youtube.comments.update",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "comments"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/comments/markAsSpam",
+          "operation_id": "youtube.comments.markAsSpam",
+          "summary": "Expresses the caller's opinion that one or more comments should be flagged as spam.",
+          "tags": [
+            "comments"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/comments/setModerationStatus",
+          "operation_id": "youtube.comments.setModerationStatus",
+          "summary": "Sets the moderation status of one or more comments.",
+          "tags": [
+            "comments"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/i18nLanguages",
+          "operation_id": "youtube.i18nLanguages.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "i18nLanguages"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/i18nRegions",
+          "operation_id": "youtube.i18nRegions.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "i18nRegions"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/liveBroadcasts",
+          "operation_id": "youtube.liveBroadcasts.delete",
+          "summary": "Delete a given broadcast.",
+          "tags": [
+            "liveBroadcasts"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/liveBroadcasts",
+          "operation_id": "youtube.liveBroadcasts.list",
+          "summary": "Retrieve the list of broadcasts associated with the given channel.",
+          "tags": [
+            "liveBroadcasts"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/liveBroadcasts",
+          "operation_id": "youtube.liveBroadcasts.insert",
+          "summary": "Inserts a new stream for the authenticated user.",
+          "tags": [
+            "liveBroadcasts"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/liveBroadcasts",
+          "operation_id": "youtube.liveBroadcasts.update",
+          "summary": "Updates an existing broadcast for the authenticated user.",
+          "tags": [
+            "liveBroadcasts"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/liveBroadcasts/bind",
+          "operation_id": "youtube.liveBroadcasts.bind",
+          "summary": "Bind a broadcast to a stream.",
+          "tags": [
+            "liveBroadcasts"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/liveBroadcasts/cuepoint",
+          "operation_id": "youtube.liveBroadcasts.insertCuepoint",
+          "summary": "Insert cuepoints in a broadcast",
+          "tags": [
+            "liveBroadcasts"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/liveBroadcasts/transition",
+          "operation_id": "youtube.liveBroadcasts.transition",
+          "summary": "Transition a broadcast to a given status.",
+          "tags": [
+            "liveBroadcasts"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/liveChat/bans",
+          "operation_id": "youtube.liveChatBans.delete",
+          "summary": "Deletes a chat ban.",
+          "tags": [
+            "liveChatBans"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/liveChat/bans",
+          "operation_id": "youtube.liveChatBans.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "liveChatBans"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/liveChat/messages",
+          "operation_id": "youtube.liveChatMessages.delete",
+          "summary": "Deletes a chat message.",
+          "tags": [
+            "liveChatMessages"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/liveChat/messages",
+          "operation_id": "youtube.liveChatMessages.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "liveChatMessages"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/liveChat/messages",
+          "operation_id": "youtube.liveChatMessages.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "liveChatMessages"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/liveChat/moderators",
+          "operation_id": "youtube.liveChatModerators.delete",
+          "summary": "Deletes a chat moderator.",
+          "tags": [
+            "liveChatModerators"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/liveChat/moderators",
+          "operation_id": "youtube.liveChatModerators.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "liveChatModerators"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/liveChat/moderators",
+          "operation_id": "youtube.liveChatModerators.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "liveChatModerators"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/liveStreams",
+          "operation_id": "youtube.liveStreams.delete",
+          "summary": "Deletes an existing stream for the authenticated user.",
+          "tags": [
+            "liveStreams"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/liveStreams",
+          "operation_id": "youtube.liveStreams.list",
+          "summary": "Retrieve the list of streams associated with the given channel. --",
+          "tags": [
+            "liveStreams"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/liveStreams",
+          "operation_id": "youtube.liveStreams.insert",
+          "summary": "Inserts a new stream for the authenticated user.",
+          "tags": [
+            "liveStreams"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/liveStreams",
+          "operation_id": "youtube.liveStreams.update",
+          "summary": "Updates an existing stream for the authenticated user.",
+          "tags": [
+            "liveStreams"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/members",
+          "operation_id": "youtube.members.list",
+          "summary": "Retrieves a list of members that match the request criteria for a channel.",
+          "tags": [
+            "members"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/membershipsLevels",
+          "operation_id": "youtube.membershipsLevels.list",
+          "summary": "Retrieves a list of all pricing levels offered by a creator to the fans.",
+          "tags": [
+            "membershipsLevels"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/playlistImages",
+          "operation_id": "youtube.playlistImages.delete",
+          "summary": "Deletes a resource.",
+          "tags": [
+            "playlistImages"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/playlistImages",
+          "operation_id": "youtube.playlistImages.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "playlistImages"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/playlistImages",
+          "operation_id": "youtube.playlistImages.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "playlistImages"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/playlistImages",
+          "operation_id": "youtube.playlistImages.update",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "playlistImages"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/playlistItems",
+          "operation_id": "youtube.playlistItems.delete",
+          "summary": "Deletes a resource.",
+          "tags": [
+            "playlistItems"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/playlistItems",
+          "operation_id": "youtube.playlistItems.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "playlistItems"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/playlistItems",
+          "operation_id": "youtube.playlistItems.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "playlistItems"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/playlistItems",
+          "operation_id": "youtube.playlistItems.update",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "playlistItems"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/playlists",
+          "operation_id": "youtube.playlists.delete",
+          "summary": "Deletes a resource.",
+          "tags": [
+            "playlists"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/playlists",
+          "operation_id": "youtube.playlists.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "playlists"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/playlists",
+          "operation_id": "youtube.playlists.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "playlists"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/playlists",
+          "operation_id": "youtube.playlists.update",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "playlists"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/search",
+          "operation_id": "youtube.search.list",
+          "summary": "Retrieves a list of search resources",
+          "tags": [
+            "search"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/subscriptions",
+          "operation_id": "youtube.subscriptions.delete",
+          "summary": "Deletes a resource.",
+          "tags": [
+            "subscriptions"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/subscriptions",
+          "operation_id": "youtube.subscriptions.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "subscriptions"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/subscriptions",
+          "operation_id": "youtube.subscriptions.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "subscriptions"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/superChatEvents",
+          "operation_id": "youtube.superChatEvents.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "superChatEvents"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/tests",
+          "operation_id": "youtube.tests.insert",
+          "summary": "POST method.",
+          "tags": [
+            "tests"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/thirdPartyLinks",
+          "operation_id": "youtube.thirdPartyLinks.delete",
+          "summary": "Deletes a resource.",
+          "tags": [
+            "thirdPartyLinks"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/thirdPartyLinks",
+          "operation_id": "youtube.thirdPartyLinks.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "thirdPartyLinks"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/thirdPartyLinks",
+          "operation_id": "youtube.thirdPartyLinks.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "thirdPartyLinks"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/thirdPartyLinks",
+          "operation_id": "youtube.thirdPartyLinks.update",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "thirdPartyLinks"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/thumbnails/set",
+          "operation_id": "youtube.thumbnails.set",
+          "summary": "As this is not an insert in a strict sense (it supports uploading/setting of a thumbnail for multiple videos, which doesn't result in creation of a single resource), I use a custom verb here.",
+          "tags": [
+            "thumbnails"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/videoAbuseReportReasons",
+          "operation_id": "youtube.videoAbuseReportReasons.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "videoAbuseReportReasons"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/videoCategories",
+          "operation_id": "youtube.videoCategories.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "videoCategories"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/youtube/v3/videos",
+          "operation_id": "youtube.videos.delete",
+          "summary": "Deletes a resource.",
+          "tags": [
+            "videos"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/videos",
+          "operation_id": "youtube.videos.list",
+          "summary": "Retrieves a list of resources, possibly filtered.",
+          "tags": [
+            "videos"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/videos",
+          "operation_id": "youtube.videos.insert",
+          "summary": "Inserts a new resource into this collection.",
+          "tags": [
+            "videos"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/youtube/v3/videos",
+          "operation_id": "youtube.videos.update",
+          "summary": "Updates an existing resource.",
+          "tags": [
+            "videos"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/youtube/v3/videos/getRating",
+          "operation_id": "youtube.videos.getRating",
+          "summary": "Retrieves the ratings that the authorized user gave to a list of specified videos.",
+          "tags": [
+            "videos"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/videos/rate",
+          "operation_id": "youtube.videos.rate",
+          "summary": "Adds a like or dislike rating to a video or removes a rating from a video.",
+          "tags": [
+            "videos"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/videos/reportAbuse",
+          "operation_id": "youtube.videos.reportAbuse",
+          "summary": "Report abuse for a video.",
+          "tags": [
+            "videos"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/watermarks/set",
+          "operation_id": "youtube.watermarks.set",
+          "summary": "Allows upload of watermark image and setting it for a channel.",
+          "tags": [
+            "watermarks"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/youtube/v3/watermarks/unset",
+          "operation_id": "youtube.watermarks.unset",
+          "summary": "Allows removal of channel watermark.",
+          "tags": [
+            "watermarks"
+          ]
+        }
+      ],
+      "tags": [
+        "abuseReports",
+        "activities",
+        "captions",
+        "channelBanners",
+        "channelSections",
+        "channels",
+        "commentThreads",
+        "comments",
+        "i18nLanguages",
+        "i18nRegions",
+        "liveBroadcasts",
+        "liveChatBans",
+        "liveChatMessages",
+        "liveChatModerators",
+        "liveStreams",
+        "members",
+        "membershipsLevels",
+        "playlistImages",
+        "playlistItems",
+        "playlists",
+        "search",
+        "subscriptions",
+        "superChatEvents",
+        "tests",
+        "thirdPartyLinks",
+        "thumbnails",
+        "videoAbuseReportReasons",
+        "videoCategories",
+        "videos",
+        "watermarks",
+        "youtube"
+      ],
+      "categories": [
+        "abuseReports",
+        "activities",
+        "captions",
+        "channelBanners",
+        "channelSections",
+        "channels",
+        "commentThreads",
+        "comments",
+        "i18nLanguages",
+        "i18nRegions",
+        "liveBroadcasts",
+        "liveChatBans",
+        "liveChatMessages",
+        "liveChatModerators",
+        "liveStreams",
+        "members",
+        "membershipsLevels",
+        "playlistImages",
+        "playlistItems",
+        "playlists",
+        "search",
+        "subscriptions",
+        "superChatEvents",
+        "tests",
+        "thirdPartyLinks",
+        "thumbnails",
+        "videoAbuseReportReasons",
+        "videoCategories",
+        "videos",
+        "watermarks",
+        "youtube"
+      ],
+      "authentication": {
+        "kind": "unknown",
+        "required": false,
+        "verified": false
+      },
+      "authentication_evidence": {
+        "declared_by_spec": true,
+        "scheme_names": [
+          "Oauth2",
+          "Oauth2c"
+        ],
+        "scheme_details": {
+          "Oauth2": {
+            "type": "oauth2"
+          },
+          "Oauth2c": {
+            "type": "oauth2"
+          }
+        },
+        "global_security_declared": false,
+        "global_security": null,
+        "operation_security": [
+          {
+            "path": "/youtube/v3/abuseReports",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/activities",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/captions",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/captions",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/captions",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/captions",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/captions/{id}",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/channelBanners/insert",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.upload"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.upload"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/channelSections",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/channelSections",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/channelSections",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/channelSections",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/channels",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner-channel-audit"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner-channel-audit"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/channels",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/commentThreads",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/commentThreads",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/comments",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/comments",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/comments",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/comments",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/comments/markAsSpam",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/comments/setModerationStatus",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/i18nLanguages",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/i18nRegions",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveBroadcasts",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveBroadcasts",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveBroadcasts",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveBroadcasts",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveBroadcasts/bind",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveBroadcasts/cuepoint",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveBroadcasts/transition",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveChat/bans",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveChat/bans",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveChat/messages",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveChat/messages",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveChat/messages",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveChat/moderators",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveChat/moderators",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveChat/moderators",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveStreams",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveStreams",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveStreams",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/liveStreams",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/members",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.channel-memberships.creator"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.channel-memberships.creator"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/membershipsLevels",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.channel-memberships.creator"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.channel-memberships.creator"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlistImages",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlistImages",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlistImages",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlistImages",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlistItems",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlistItems",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlistItems",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlistItems",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlists",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlists",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlists",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/playlists",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/search",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/subscriptions",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/subscriptions",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/subscriptions",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/superChatEvents",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/tests",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/thumbnails/set",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.upload"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.upload"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/videoAbuseReportReasons",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/videoCategories",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/videos",
+            "method": "DELETE",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/videos",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.readonly"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/videos",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.upload"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.upload"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/videos",
+            "method": "PUT",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/videos/getRating",
+            "method": "GET",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/videos/rate",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/videos/reportAbuse",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/watermarks/set",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.upload"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.upload"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          },
+          {
+            "path": "/youtube/v3/watermarks/unset",
+            "method": "POST",
+            "requirements": [
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtube.force-ssl"
+                ]
+              },
+              {
+                "Oauth2": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ],
+                "Oauth2c": [
+                  "https://www.googleapis.com/auth/youtubepartner"
+                ]
+              }
+            ]
+          }
+        ],
+        "reviewed": false,
+        "warning": "OpenAPI security declarations are source claims; verify them against current official provider docs."
+      },
+      "free_status": "UNKNOWN",
+      "quota": "UNKNOWN",
+      "rate_limits": "UNKNOWN",
+      "license": "UNKNOWN",
+      "spec_license": {
+        "name": "Creative Commons Attribution 3.0",
+        "url": "http://creativecommons.org/licenses/by/3.0/"
+      },
+      "checked_on": "2026-11-12",
+      "review_status": "needs_primary_source_review",
+      "review_reasons": [
+        "Verify that the current specification is published or endorsed by the API provider.",
+        "Verify auth semantics and any required credential scopes from official documentation.",
+        "OpenAPI spec licensing does not establish API/data licensing; review the service terms.",
+        "No free-tier, quota, or rate-limit claim is inferred from the specification."
+      ],
+      "evidence_sources": [
+        {
+          "url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/googleapis.com/youtube/v3/openapi.yaml",
+          "title": "OpenAPI 3.0.0 specification: YouTube Data API v3",
+          "checked_on": "2026-11-12",
+          "evidence_level": "spec_import_not_independently_verified"
+        }
+      ],
+      "source_attributions": [
+        {
+          "spec_url": "https://github.com/APIs-guru/openapi-directory/blob/f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49/APIs/googleapis.com/youtube/v3/openapi.yaml",
+          "openapi_version": "3.0.0",
+          "checked_on": "2026-11-12",
+          "spec_license": {
+            "name": "Creative Commons Attribution 3.0",
+            "url": "http://creativecommons.org/licenses/by/3.0/"
+          },
+          "repository": "https://github.com/APIs-guru/openapi-directory",
+          "revision": "f04b8d0bcd39c52e1cf3ad7a5fe744709832ae49",
+          "file": "APIs/googleapis.com/youtube/v3/openapi.yaml",
+          "repository_license_note": "Repository-wide license metadata may not establish a third-party API's service/data license; review per-file provenance and provider terms."
+        }
+      ],
+      "possible_duplicate_flags": [],
+      "possible_existing_matches": [
+        "youtube-data-v3"
+      ],
+      "source_claims_by_source": []
+    }
+  ]
+}
