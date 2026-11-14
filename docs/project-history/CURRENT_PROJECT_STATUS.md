@@ -12,6 +12,10 @@ The active branch is `arena/e2a56ea8-divyesh-api-mind`; `origin` is `https://git
 
 No merge to the default branch or force-push is part of this recovery. Keep work on the active branch.
 
+### Mission 07 synchronization checkpoint — 2026-11-12
+
+A fresh `git fetch origin` found the active local branch at the `a219f176` base with no upstream and a modified README plus 51 untracked files. A read-only Git-blob and mode comparison confirmed every one of the 54 local files matched the fetched `origin/arena/e2a56ea8-divyesh-api-mind` tree; no ignored files or content divergence were found. The overlay was saved to local stash `ab3b05cf5d3cce4a2701c1f010f3826b3bdc44f9`, then the active feature branch was fast-forwarded (no reset, force-push, history rewrite, or main merge) to `4899c7901c916729cd18086e682ffcf92174a43d`. Tracking is configured, ahead/behind is 0/0, and the worktree is clean. The stash remains a local recovery snapshot.
+
 ## Project snapshot
 
 | Area | Current state |
@@ -22,8 +26,9 @@ No merge to the default branch or force-push is part of this recovery. Keep work
 | MCP metadata | 6 records: five directory entries, one reviewed repository, zero working integrations |
 | Discovery queue | 4,455 source rows, 2,964 unique candidates, 1,488 exact merges in the combined stage, 717 possible-duplicate flags |
 | API Atlas leads | 2,092 API rows; 197 marked checked by API Atlas itself, still upstream claims here |
-| Phase 3 batch | 100 structurally validated leads; zero independent primary-source reviews, candidate endpoint probes, proposals, approvals, or acceptances |
-| Candidate accessibility | `NOT_TESTED` for all 100 Phase 3 leads |
+| Phase 3 / Phase 4 batch | 100 structurally validated leads; candidates #1–#10 independently reviewed from primary sources (97 evidence records in the working batch); 0 candidate endpoint probes, proposals, approvals, or acceptances |
+| Phase 4 remaining candidates | #11–#100 pending; #11–#15 prepared from imported metadata only; all remain unreviewed |
+| Candidate accessibility | `NOT_TESTED` for all 100 candidates |
 | Package metadata | Python 3.10+, no mandatory third-party runtime dependencies; version field `0.1.0` is not proof of publication |
 
 The accepted catalog counts and candidate counts describe local data snapshots. They do not claim live availability, verification of all API terms, or working MCP servers.
@@ -36,7 +41,7 @@ The root MIT license is for the project code/material it covers. Discovery sourc
 
 ## Phase 4 boundary
 
-Phase 4 research has not started. After the Mission 04 recovery point was confirmed synchronized, a bounded documentary plan for the existing top-100 batch was prepared in [`../phase-4-research-plan.md`](../phase-4-research-plan.md). Actual work remains limited to provider-controlled primary documentation and policies. Do not probe candidate endpoints without both reviewed provider permission and exact official endpoint documentation. Do not auto-accept candidates or change verification status without evidence and the required human decision.
+Phase 4 documentary research is underway under the bounded plan in [`../phase-4-research-plan.md`](../phase-4-research-plan.md). Candidates #1–#5 are preserved in the approved pilot; #6–#10 are in the working review batch. Mission 07's master checkpoint is [`../research/MASTER_PROGRESS_REPORT.md`](../research/MASTER_PROGRESS_REPORT.md); at its initial checkpoint, #11–#100 remain pending. Continue only with provider-controlled primary documentation and policies; imported directories and OpenAPI mirrors are pointers, not findings. Do not probe candidate endpoints, create accounts, collect credentials, or pay for access. Do not auto-accept candidates or change accepted-catalog status without evidence and the required human decision.
 
 ## Reference documents
 
