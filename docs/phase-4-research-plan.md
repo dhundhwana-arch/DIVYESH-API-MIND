@@ -2,7 +2,7 @@
 
 - **Plan date:** 2026-11-12
 - **Prepared after:** Mission 04 preservation commit `8ae2641fddd72e1675d345f1e1938f4bca88a696` was pushed to the active branch and confirmed equal to `origin` with `git ls-remote`.
-- **Research status (checkpoint):** in progress. This plan was prepared before source review; see the Mission 07 batch report below for execution results. Batch #11–#20 now has source-linked documentary findings; one candidate is explicitly deferred at license review.
+- **Research status (checkpoint):** in progress. The Mission 07 report records candidates #11–#20; the Mission 09 #21–#30 report records the next ten-candidate documentary review. Nine new workflows reached `human_approval` without proposals; City Context (#30) is deferred at license review because provider-domain pages were inaccessible and current legal terms remain unknown.
 
 ## Objective and scope
 
@@ -82,6 +82,10 @@ No candidate is eligible for proposal or catalog acceptance merely because docum
 ## Mission 07 execution checkpoint — 2026-11-12
 
 Batch #11–#20 was reviewed from provider-controlled documentary sources, appended to the working batch at `docs/research/phase-4-review-batch-2026-11-12.json`, and validated. Nine candidate workflows reached the `human_approval` stage without creating proposals; ClickMeter (#14) is deferred at `license_review` because current ClickMeter-specific terms could not be established. All accessibility findings remain `NOT_TESTED`; no candidate endpoint was contacted. See the [batch report](research/phase-4-batch-11-20-report-2026-11-12.md) for per-candidate outcomes and exact counts.
+
+## Mission 09 execution checkpoint — 2026-11-12
+
+Candidates #21–#30 were reviewed using official provider/repository materials where available. The working batch received 66 appended evidence records (63 primary, three non-primary page-access observations) and 100 findings (62 verified, 38 inconclusive). Nine candidates (#21–#29) reached `human_approval` with no proposal; City Context (#30) remains deferred at `license_review` with all unresolved findings `UNKNOWN`/`NOT_TESTED`, because provider homepage/reference/API-page fetches returned HTTP 500 and current terms were not established. A page-fetch error is not evidence that the service is closed. All 100 accessibility findings remain `NOT_TESTED`; no endpoints or live APIs were called, no accounts/credentials or paid access were used, and no candidate was proposed or accepted. The accepted catalog, `census-data`, and the separate OpenWeatherMap sibling were unchanged. See the [#21–#30 batch report](research/phase-4-batch-21-30-report-2026-11-12.md) for per-candidate evidence and limitations.
 
 ## Related records
 

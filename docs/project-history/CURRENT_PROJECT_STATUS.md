@@ -26,8 +26,8 @@ A fresh `git fetch origin` found the active local branch at the `a219f176` base 
 | MCP metadata | 6 records: five directory entries, one reviewed repository, zero working integrations |
 | Discovery queue | 4,455 source rows, 2,964 unique candidates, 1,488 exact merges in the combined stage, 717 possible-duplicate flags |
 | API Atlas leads | 2,092 API rows; 197 marked checked by API Atlas itself, still upstream claims here |
-| Phase 3 / Phase 4 batch | 100 structurally validated leads; candidates #1–#20 have source-linked research records (156 primary evidence records, 289 evidence records total); 19 workflows at the human-approval gate and ClickMeter #14 deferred at license review |
-| Phase 4 remaining candidates | #21–#100 (80 candidates) have no primary-source review yet; do not repeat #1–#20 |
+| Phase 3 / Phase 4 batch | 100 structurally validated leads; candidates #1–#29 have primary-source review records (219 primary evidence records, 355 evidence records total); 28 workflows at the human-approval gate; ClickMeter #14 and City Context #30 deferred at license review |
+| Phase 4 remaining candidates | #30–#100 (71 candidates) have no primary-source review record; #30 has only non-primary inaccessible-page observations; do not repeat #1–#29 |
 | Candidate accessibility | `NOT_TESTED` for all 100 candidates |
 | Package metadata | Python 3.10+, no mandatory third-party runtime dependencies; version field `0.1.0` is not proof of publication |
 
@@ -35,13 +35,13 @@ The accepted catalog counts and candidate counts describe local data snapshots. 
 
 ## Current quality status
 
-The Mission 04 QA record is in [`TEST_EVIDENCE.md`](TEST_EVIDENCE.md): pytest, compileall, catalog/discovery/batch validation, package build, example smoke checks, issue-template parsing, internal links, and secret-scan review. Validation commands are offline; only the separate three-entry historical live-probe record documents prior provider reads.
+The historical Mission 04 QA record and the Mission 09 #21–#30 rerun are in [`TEST_EVIDENCE.md`](TEST_EVIDENCE.md). The current batch and catalogs validate; the full suite passed (75 tests and 13 subtests), compileall passed, and `git diff --check` passed. Validation commands use local data/mocked transports; they did not contact candidate endpoints. The separate three-entry historical live-probe record documents unrelated prior provider reads.
 
 The root MIT license is for the project code/material it covers. Discovery sources carry separate attribution/license context in [`../third-party-notices.md`](../third-party-notices.md). No package publication, CI workflow, coverage percentage, or external endorsement is asserted.
 
 ## Phase 4 boundary
 
-Phase 4 documentary research is underway under the bounded plan in [`../phase-4-research-plan.md`](../phase-4-research-plan.md). Candidates #1–#5 remain in the approved pilot; #6–#20 are recorded in the working review batch. The #11–#20 report is [`../research/phase-4-batch-11-20-report-2026-11-12.md`](../research/phase-4-batch-11-20-report-2026-11-12.md). Of those ten, nine workflows reached `human_approval`; ClickMeter #14 is deferred at `license_review` because current ClickMeter-specific terms could not be established. Candidates #21–#100 remain pending. Continue only with provider-controlled primary documentation and policies; imported directories and OpenAPI mirrors are pointers, not findings. Do not probe candidate endpoints, create accounts, collect credentials, or pay for access. Do not auto-accept candidates or change accepted-catalog status without evidence and the required human decision.
+Phase 4 documentary research continues under the bounded plan in [`../phase-4-research-plan.md`](../phase-4-research-plan.md). Candidates #1–#5 remain in the approved pilot; #6–#30 are recorded in the separate working review batch. The #11–#20 report is [`../research/phase-4-batch-11-20-report-2026-11-12.md`](../research/phase-4-batch-11-20-report-2026-11-12.md), and the #21–#30 report is [`../research/phase-4-batch-21-30-report-2026-11-12.md`](../research/phase-4-batch-21-30-report-2026-11-12.md). Across #21–#30, nine workflows reached `human_approval` without proposals; City Context #30 is deferred at `license_review` because current provider terms could not be reviewed. ClickMeter #14 remains deferred and outside the batch. Candidates #30–#100 have no primary-source review record. All 100 accessibility findings remain `NOT_TESTED`; no candidate endpoints were probed and no accounts or credentials were used. Continue only with provider-controlled primary documentation and policies; imported directories and OpenAPI mirrors are pointers, not findings. Do not probe candidate endpoints, create accounts, collect credentials, or pay for access. Do not auto-accept candidates or change accepted-catalog status without evidence and the required human decision. The accepted Census `census-data` record and separate OpenWeatherMap sibling candidate remain unchanged.
 
 ## Reference documents
 

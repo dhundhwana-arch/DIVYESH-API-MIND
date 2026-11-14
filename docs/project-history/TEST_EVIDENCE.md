@@ -2,6 +2,21 @@
 
 **Mission 04 validation date:** 2026-11-12. Checks were run locally against the current source tree. They do not contact candidate provider endpoints or turn source claims into verified facts.
 
+## Mission 09 batch validation — 2026-11-12
+
+After the #21–#30 documentary review, the following checks were rerun against the updated working batch and current repository tree:
+
+| Check | Result |
+| --- | --- |
+| `.venv/bin/apimind validate` | Passed; API, model, dataset, MCP, discovery queue, and OpenAPI review queue valid |
+| `.venv/bin/apimind verify-validate docs/research/phase-4-review-batch-2026-11-12.json` | Passed; 100 candidates, 29 with primary-source records, all 100 accessibility states `NOT_TESTED`, 0 endpoint probes/proposals/approvals/acceptances |
+| `.venv/bin/apimind verify-validate` on the pilot and original source batch | Passed for both; original source batch remains unreviewed and separate |
+| `.venv/bin/python -m pytest -q` | **75 passed, 13 subtests passed** |
+| `.venv/bin/python -m compileall -q src tests examples` | Passed |
+| `git diff --check` | Passed |
+
+The first test command found no `.venv` in this checkout. The ignored local environment was then created with the project test and YAML extras; the virtual environment is not tracked. These checks use local files and mocked transports; no Mission 09 candidate endpoint/API, account, or credential was used. The batch/report hashes and per-candidate workflow outcomes are in [`../research/phase-4-batch-21-30-report-2026-11-12.md`](../research/phase-4-batch-21-30-report-2026-11-12.md).
+
 ## Automated test and code checks
 
 | Check | Result |

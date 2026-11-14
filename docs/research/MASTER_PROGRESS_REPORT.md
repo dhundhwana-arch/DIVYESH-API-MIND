@@ -1,17 +1,17 @@
 # Master Progress Report — DIVYESH API MIND
 
 - **Checkpoint date:** 2026-11-12
-- **Mission:** 07 — long-running research, development, and knowledge-engine work
+- **Mission:** 09 — Phase 4 documentary review of candidates #21–#30
 - **Repository:** `dhundhwana-arch/DIVYESH-API-MIND`
 - **Active branch:** `arena/e2a56ea8-divyesh-api-mind`
 
 ## Current status
 
-Phase 4 now has provider-controlled source research recorded for candidates **#1–#20**. The #11–#20 checkpoint added ten candidate reviews and 60 evidence records to the working 100-candidate batch. Nine of those new workflows reached `human_approval` with no proposal; ClickMeter (#14) is deferred at `license_review` because a current ClickMeter-specific terms/data-rights source was not established. Candidates **#21–#100 (80 candidates)** have no new primary-source review in this checkpoint.
+Phase 4 provider-controlled source research is recorded for candidates **#1–#29**. The Mission 09 #21–#30 checkpoint appended 66 evidence records (63 primary and three non-primary inaccessible-page observations) and 100 findings to the separate working 100-candidate batch: 62 verified and 38 inconclusive. Nine new workflows (#21–#29) reached `human_approval` with that stage `not_started`; City Context (#30) is deferred at `license_review` because provider-domain page fetches returned HTTP 500 and current terms/rights could not be established. Candidates **#30–#100 (71 candidates)** have no primary-source review record; the City Context page-access observations are not provider findings.
 
-The validator's `primary_source_reviews_completed: 20` field counts completion of the official-source-identification stage. It does **not** mean every one of those workflows passed through every later stage. For this checkpoint, 19 candidates (#1–#13 and #15–#20) are at the human-approval gate; #14 is explicitly deferred. Human approval itself has not been requested or recorded.
+The validator's `primary_source_reviews_completed: 30` field counts completion of the official-source-identification stage, including an inconclusive source-access review for #30. The stricter `candidates_with_primary_source_review` count is 29. Across the current batch, 28 workflows are at `human_approval` without proposals; ClickMeter (#14) and City Context (#30) are deferred at `license_review`. Human approval itself has not been requested or recorded.
 
-Research remained documentary-only. All 100 candidate accessibility findings remain `NOT_TESTED`; there are zero endpoint probes, live candidate API calls, proposals, human approvals, and catalog acceptances. The accepted API catalog was not changed.
+Research remained documentary-only. All 100 candidate accessibility findings remain `NOT_TESTED`; there are zero endpoint probes, live candidate API calls, proposals, human approvals, and catalog acceptances. The accepted API catalog was not changed; the Census `census-data` record and separate OpenWeatherMap sibling candidate remain intact.
 
 ## Phase 0 — repository preservation and synchronization
 
@@ -31,44 +31,46 @@ Preserved history includes:
 | Measure | Current count / state |
 | --- | ---: |
 | Total candidates in pinned batch | 100 |
-| Candidates with primary-source review records | 20 (#1–#20) |
-| Candidates at `human_approval` (no proposal) | 19 |
-| Candidate workflows deferred at a research stage | 1 (#14 ClickMeter, `license_review`) |
-| Candidates with no primary-source review yet | 80 (#21–#100) |
-| Primary-source evidence records in working batch | 156 |
-| All evidence records in working batch | 289 |
+| Candidates with primary-source review records | 29 (#1–#29) |
+| Candidates at `human_approval` (no proposal) | 28 |
+| Candidate workflows deferred at a research stage | 2 (#14 ClickMeter and #30 City Context, both `license_review`) |
+| Candidates with no primary-source review record | 71 (#30–#100) |
+| Primary-source evidence records in working batch | 219 |
+| All evidence records in working batch | 355 |
 | Candidate endpoint probes / live candidate API calls | 0 / 0 |
 | Proposals / human approvals / catalog acceptances | 0 / 0 / 0 |
 | Candidate accessibility | `NOT_TESTED` for all 100 |
 
-The 60 newly appended #11–#20 evidence entries consist of 59 primary provider sources and one non-primary, inconclusive ClickMeter terms-URL redirect observation. The ten new candidate records contain 71 verified and 29 inconclusive findings. Unsupported rights, current operation, pricing, quota, release activity, and product-identity claims remain unresolved where the sources do not establish them.
+The #21–#30 checkpoint appended 66 evidence records: 63 primary provider/repository sources and three non-primary observations that City Context provider-domain page fetches returned HTTP 500. The ten candidate records contain 62 verified and 38 inconclusive findings. The 11 pre-existing imported directory pointers for those candidates remain unreviewed leads. The #21–#29 review findings are provider-sourced; #30 remains deferred with unknown API/legal status, not presumed closed.
 
-Current batch summary counts include: 20 API-existence, provider-identity, documentation, and Python-feasibility findings; 16 authentication findings; 13 documented quota findings; 11 clarified license findings; 4 verified maintenance-activity findings; 10 independently documented free-access paths (8 limited, 1 no-key, 1 keyed); 0 verified accessibility results; and 0 endpoint probes. The existing batch also reports unknown counts of API existence 80, provider identity 80, documentation 80, authentication 84, free status 90, quotas 87, license 89, maintenance 96, and Python feasibility 80. These counts come from the validated review-batch summary; exact per-candidate facts and evidence links are in the JSON artifact.
+Current validated batch summary counts include: 29 API-existence, provider-identity, and documentation findings; 22 authentication findings; 21 documented quota findings; 15 clarified license findings; 8 verified maintenance-activity findings; 13 independently documented free-access paths (11 limited, 1 no-key, 1 keyed) and 1 paid-subscription finding; 0 verified accessibility results; and 0 endpoint probes. The summary reports 71 unknowns each for API existence, provider identity, and documentation; 78 authentication; 86 free status; 79 quotas; 85 license; 92 maintenance activity; and 72 Python feasibility. The Census free-key finding remains classified as unknown access status because official sources conflict on when a key is required. These counts are from the validated working-batch summary; per-candidate facts and evidence links are in the JSON artifact.
 
-## Batch 2 report and artifacts
+## Batch reports and artifacts
 
-The per-candidate outcomes, source gaps, and limitations are in [`phase-4-batch-11-20-report-2026-11-12.md`](phase-4-batch-11-20-report-2026-11-12.md). The working review file is [`phase-4-review-batch-2026-11-12.json`](phase-4-review-batch-2026-11-12.json). Findings were appended through the evidence/finding/stage workflow; imported source pointers, candidate ranks, candidates #1–#10, and hash-linked prior workflow history were preserved.
+The per-candidate outcomes and source gaps are in the [#11–#20 report](phase-4-batch-11-20-report-2026-11-12.md) and [#21–#30 report](phase-4-batch-21-30-report-2026-11-12.md). The shared working review file is [`phase-4-review-batch-2026-11-12.json`](phase-4-review-batch-2026-11-12.json). Findings were appended through the evidence/finding/stage workflow; prior ranks, imported pointers, candidates #1–#20, and hash-linked history were preserved.
 
-Artifact SHA-256 values at this checkpoint:
+Artifact SHA-256 values at the #21–#30 checkpoint:
 
 - Approved pilot: `5d68dbeee2ec646c060c3c361cbb800cd29e836284af4e59eb27e96ebb99d999`
-- Working review batch: `68fbe7fc39a942f9ac7502321d64e5d80fa85b5e416d8322a465fd9d594d71e9`
+- Working review batch: `a22fe4edf469ff73e5f0405232406e1a50908e2b1a7410901cd5819ada1cf135`
 - Original 100-candidate source batch: `c07781393d477369156beceb03dd2137a6b360966b4a8f92fc7e0ae0c1193085`
 - Accepted API catalog (unchanged): `6a6e3d6ed2a3b638edc7767143aa209af84ab4b0b02616585699c30cbb601219`
 
 ## Validation and test status
 
-The #11–#20 batch passed `validate_verification_batch` before save; the evidence append, finding, and stage-transition helpers also validated each update. At this checkpoint the following were executed successfully:
+For Mission 09, the evidence/finding/stage workflow validated each update and the saved #21–#30 working batch passed both `validate_verification_batch` and the CLI validator. The following checks then passed:
 
-- `apimind validate`: API, model, dataset, MCP, discovery, and OpenAPI review queues valid.
-- `apimind verify-validate` on the working batch, approved pilot, and original 100-candidate source batch: all valid.
-- `validate_review_queue` on `src/divyesh_api_mind/data/discovery_candidates.json`: 2,964 candidates, zero validation errors.
+- `apimind validate`: API, model, dataset, MCP, discovery, and OpenAPI review queues valid; 2,964 discovery candidates and three OpenAPI review candidates remain unpromoted.
+- `apimind verify-validate` on the working batch, approved pilot, and original 100-candidate source batch: all valid. The working batch reports 100 accessibility findings `NOT_TESTED`, 0 endpoint probes, and 0 proposals/approvals/acceptances.
 - `pytest -q`: **75 passed, 13 subtests passed**.
-- `python -m compileall -q src tests`: passed.
+- `python -m compileall -q src tests examples`: passed.
+- `git diff --check`: passed.
 
-The prior Mission 07 checkpoint report over-attributed `apimind validate`, `verify-validate`, and discovery-queue validation to its test run. Correction: the earlier run actually recorded **75 pytest tests passed, 13 subtests passed**, and `python -m compileall -q src tests` passed; the cited CLI/queue validators were not run in that prior turn. The validations listed above were run in this checkpoint.
+The first attempted test invocation found no `.venv` in this checkout. An ignored local `.venv` was then created and the project's optional test/YAML dependencies installed; no package, dependency, or build artifacts were added to version control. Validation and tests use local data/mocked transports and did not contact any candidate endpoint.
 
-No API-engine implementation change was warranted for this batch: the existing evidence gates, primary-source requirements, stage history, `NOT_TESTED` accessibility state, and separate human approval guard all behaved as designed. Documentation and the batch report were updated; no proposal or catalog change was made.
+The prior Mission 07 checkpoint report over-attributed `apimind validate`, `verify-validate`, and discovery-queue validation to its earlier test run. Correction: that earlier run actually recorded **75 pytest tests passed, 13 subtests passed**, and `python -m compileall -q src tests` passed; the cited CLI/queue validators were not run in that earlier turn. Those validators were run in the subsequent #11–#20 checkpoint and again for Mission 09 above.
+
+No API-engine implementation change was warranted for this documentary batch: evidence gates, source requirements, workflow history, `NOT_TESTED` accessibility state, and the separate human-approval guard behaved as designed. Only the working review batch and documentation were updated; no proposal or accepted-catalog change was made.
 
 ## Batch progress
 
@@ -76,9 +78,9 @@ No API-engine implementation change was warranted for this batch: the existing e
 | --- | --- | --- | --- |
 | Pilot | #1–#5 | Complete; approved pilot preserved separately | No repeat review |
 | Batch 1 | #6–#10 | Complete; source-linked reviews in working batch | No repeat review |
-| Batch 2 | #11–#20 | Source identification complete; 9 at human approval, #14 deferred at license review | Checkpoint changes, then continue |
-| Batch 3 | #21–#30 | Pending | Continue with provider-controlled sources; checkpoint after ten |
-| Batches 4–10 | #31–#100 | Pending | Continue in groups of ten; preserve `UNKNOWN` where warranted |
+| Batch 2 | #11–#20 | Source identification complete; 9 at human approval, #14 deferred at license review | No repeat review; keep #14 deferred |
+| Batch 3 | #21–#30 | Complete documentary pass; #21–#29 at human approval, #30 deferred at license review | Checkpoint changes, then continue |
+| Batches 4–10 | #31–#100 | Pending | Continue #31–#40 next; preserve `UNKNOWN` where warranted |
 
 ## Safety and decision boundaries
 
@@ -86,6 +88,6 @@ Authorized work includes public primary-source documentary research, offline imp
 
 ## Next recommended actions
 
-1. Continue with #21–#30, without repeating #1–#20; preserve source URLs, evidence types, observation dates, exact claims, confidence, and research limitations.
-2. Keep ClickMeter (#14) deferred until suitable ClickMeter-specific legal sources can be reviewed; do not substitute Rebrandly terms.
-3. For each subsequent ten-candidate checkpoint, run the catalog, queue, batch validators, and full test suite; then commit and push only to `arena/e2a56ea8-divyesh-api-mind` and verify the remote tip.
+1. Continue with #31–#40 only, without repeating #1–#30; preserve source URLs, evidence types, observation dates, exact claims, confidence, and limitations.
+2. Keep ClickMeter (#14) and City Context (#30) deferred until suitable provider-specific primary materials become available; do not infer closure from inaccessible pages or substitute third-party sources for provider terms.
+3. Keep the accepted `census-data` record and OpenWeatherMap sibling candidate separate and unchanged. For each next ten-candidate checkpoint, validate the catalogs, queue, and batch, run the full test suite, then checkpoint only on `arena/e2a56ea8-divyesh-api-mind`.
