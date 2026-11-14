@@ -2,7 +2,7 @@
 
 - **Plan date:** 2026-11-12
 - **Prepared after:** Mission 04 preservation commit `8ae2641fddd72e1675d345f1e1938f4bca88a696` was pushed to the active branch and confirmed equal to `origin` with `git ls-remote`.
-- **Research status:** not started. This document is a plan only; no provider documentation was reviewed as part of preparing it.
+- **Research status (checkpoint):** in progress. This plan was prepared before source review; see the Mission 07 batch report below for execution results. Batch #11–#20 now has source-linked documentary findings; one candidate is explicitly deferred at license review.
 
 ## Objective and scope
 
@@ -43,7 +43,7 @@ Scores order desk research only. They do not establish provider identity, API ex
 
 ### 3. Continue only within the existing batch
 
-After a human review of the pilot method, continue through the remaining ranked leads in groups of **at most 20 candidates per review session**, stopping at the existing 100-candidate batch limit. This is a workload cap, not an instruction to finish every candidate. Do not expand to other entries in the 2,964-lead queue during this phase.
+Continue through the remaining ranked leads in batches of **ten candidates**, stopping at the existing 100-candidate batch limit. Save, validate, report, and checkpoint each batch before starting the next one. If a source gap blocks a candidate, record the blocker and continue with the other candidates in the batch; do not expand to other entries in the 2,964-lead queue during this phase.
 
 For each lead, use the candidate's retained attributions and listed URLs only as pointers, then seek and record provider-controlled primary sources for the following, where publicly documented:
 
@@ -78,6 +78,10 @@ At the end of a review session, preserve:
 4. confirmation that **no candidate endpoint was contacted** and no candidate was promoted.
 
 No candidate is eligible for proposal or catalog acceptance merely because documentary research is complete. The existing workflow's proposal gate, explicit human approval, and separate acceptance of an already-existing approved catalog record continue to apply. If those gates cannot be met without a future, separately authorized probe or test, keep the lead unaccepted.
+
+## Mission 07 execution checkpoint — 2026-11-12
+
+Batch #11–#20 was reviewed from provider-controlled documentary sources, appended to the working batch at `docs/research/phase-4-review-batch-2026-11-12.json`, and validated. Nine candidate workflows reached the `human_approval` stage without creating proposals; ClickMeter (#14) is deferred at `license_review` because current ClickMeter-specific terms could not be established. All accessibility findings remain `NOT_TESTED`; no candidate endpoint was contacted. See the [batch report](research/phase-4-batch-11-20-report-2026-11-12.md) for per-candidate outcomes and exact counts.
 
 ## Related records
 
