@@ -2,6 +2,24 @@
 
 **Mission 04 validation date:** 2026-11-12. Checks were run locally against the current source tree. They do not contact candidate provider endpoints or turn source claims into verified facts.
 
+## Mission 08 consolidated map validation — 2026-11-14
+
+The `#1–#30` consolidation was checked against the preserved original source batch and separate working review batch. The map JSON includes all 261 in-scope evidence records and 793 workflow events; no candidate evidence/history or accepted-catalog record was changed.
+
+| Check | Result |
+| --- | --- |
+| `.venv/bin/apimind validate` | **Passed** — `apis`, `models`, `datasets`, `mcp_registry`, 2,964 discovery candidates (not promoted), and 3 OpenAPI review candidates (not promoted) valid |
+| `.venv/bin/apimind verify-validate` on working review batch | **Passed** — `valid: true`; 100 selected, 29 with primary-source records, 30 source-identification completions, 100 accessibility states `NOT_TESTED`, 0 probes/proposals/approvals/acceptances |
+| `.venv/bin/apimind verify-validate` on pilot batch | **Passed** — `valid: true`; 100 selected, 5 with primary-source records, 0 probes/proposals/approvals/acceptances |
+| `.venv/bin/apimind verify-validate` on original source batch | **Passed** — `valid: true`; 100 selected, 0 primary-source reviews/probes/proposals/approvals/acceptances, 100 `NOT_TESTED` |
+| `.venv/bin/python -m pytest -q` | **75 passed, 13 subtests passed** |
+| `.venv/bin/python -m compileall -q src tests examples` | **Passed** |
+| Consolidation ID/evidence/workflow integrity assertions | **Passed** — exactly ranks #1–#30 match by ID/name and original canonical candidate hash; 261/261 evidence records and 793/793 events match source fields exactly after removing documented registry indexes; all 793 original event hashes/chains recompute; every evidence/workflow reference resolves; 28 queue entries; #14/#30 deferred; no decisions; all 30 accessibility `NOT_TESTED`; source/pilot/working/catalog SHA-256 values unchanged |
+| Local Markdown link/reference validation | **Passed** — 176 local paths/fragments across 10 changed/progress Markdown files; all 1,388 rendered evidence-ID link instances resolve. External URLs were not fetched. |
+| `git diff --cached --check` | **Passed** on the final staged 11-file patch; `git diff --check` also passed. |
+
+Validation uses repository files and mocked test transports. No candidate API endpoint, account, credential or paid service was used. The saved evidence `observed_on` and transition `recorded_on` fields are all 2026-11-12, while prior review commits and the source-review handoff indicate 2026-11-14; see the [date audit](../research/phase-4-consolidated-audit-report-1-30.md). This consolidation did not rewrite prior dates or hash-linked events.
+
 ## Mission 09 batch validation — 2026-11-12
 
 After the #21–#30 documentary review, the following checks were rerun against the updated working batch and current repository tree:

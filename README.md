@@ -197,7 +197,7 @@ API Atlas imports require a hexadecimal `--revision` for pinned attribution. YAM
 
 ## 10. Phase 3 verification workflow
 
-The evidence-gated workflow is implemented, but the first saved batch is **not a set of verified APIs**. Batch [`review-batch-20261112-100`](src/divyesh_api_mind/data/verification_review_batch_2026-11-12.json) contains 100 ranked leads; all 100 passed local structural metadata validation. At the recorded checkpoint there were:
+The evidence-gated workflow is implemented, but the preserved original source batch is **not a set of verified APIs**. Batch [`review-batch-20261112-100`](src/divyesh_api_mind/data/verification_review_batch_2026-11-12.json) contains 100 ranked leads; all 100 passed local structural metadata validation. That original source batch has no independent primary-source reviews. The separate working review and the #1–#30 consolidation record reviews from the pilot and later documentary missions; no candidate endpoints were probed and no candidates were proposed or accepted. In the original source batch there are:
 
 - **0** independently completed primary-source reviews;
 - **0** API/provider identity, documentation, auth, access/free-tier, quota, maintenance, licensing, or Python-feasibility findings;
@@ -316,7 +316,7 @@ Review [`docs/third-party-notices.md`](docs/third-party-notices.md) before copyi
 
 ## 17. Tests and quality checks
 
-The recovery pass ran the project test suite and local/offline checks. At the documented checkpoint, `pytest` reported **75 passed and 13 subtests passed**. The project also passed Python byte-compilation, all four accepted-catalog validators, discovery queue validation, Phase 3 batch validation, package build checks, and the repository's internal Markdown-link check. Exact commands, results, and the limits of secret scanning are recorded in [`docs/project-history/TEST_EVIDENCE.md`](docs/project-history/TEST_EVIDENCE.md).
+The latest local/offline rerun passed the full suite (**75 passed, 13 subtests**), `compileall`, catalog/discovery/OpenAPI validation, all three verification-batch validators, and the #1–#30 evidence/workflow reference checks. The consolidated docs passed a local-link check; external URLs were not fetched. Exact outcomes and limitations are in [`docs/project-history/TEST_EVIDENCE.md`](docs/project-history/TEST_EVIDENCE.md) and the [Phase 4 audit](docs/research/phase-4-consolidated-audit-report-1-30.md).
 
 Validation and tests do not make provider requests. Mocked transport tests cover request safety; the Phase 3 candidate batch itself has not been endpoint-tested.
 
@@ -332,8 +332,8 @@ Start with [`CONTRIBUTING.md`](CONTRIBUTING.md), [`docs/catalog-maintenance.md`]
 | --- | --- |
 | Foundation | Package, offline catalogs, transport guardrails, CLI, tests, and example application are present. |
 | API discovery | 2,964 attributed review candidates are preserved; candidates remain separate from accepted records. |
-| Verification workflow | Workflow and 100-lead batch are preserved; independent primary-source review has not started. |
-| Phase 4 | A bounded documentary primary-source plan is recorded in [`docs/phase-4-research-plan.md`](docs/phase-4-research-plan.md), prepared only after the Mission 04 recovery snapshot was synchronized. Research has not started; the plan is limited to the existing top-100 batch, with no endpoint calls or automatic acceptance. |
+| Verification workflow | Original 100-lead source batch is preserved separately from the working review batch; #1–#29 have documentary primary-source records, #30 remains deferred, and no candidates were probed, proposed or accepted. |
+| Phase 4 | Primary-source reviews are recorded for #1–#29; #30 City Context is deferred. The #1–#30 [evidence map](docs/research/phase-4-consolidated-evidence-map-1-30.md), [human queue](docs/research/phase-4-human-approval-queue-1-30.md), and [audit](docs/research/phase-4-consolidated-audit-report-1-30.md) are published. All accessibility remains `NOT_TESTED`; #14 ClickMeter and #30 remain deferred. No proposals, approvals, acceptances or catalog changes. See the [research plan](docs/phase-4-research-plan.md). |
 | Longer-term target | The 500 independently verified API-record goal has **not** been reached; the accepted API catalog currently contains 26 records. |
 
 No candidate is automatically accepted. Do not change a candidate's status without evidence and the separate human decisions required by the verification workflow.
@@ -353,6 +353,12 @@ No candidate is automatically accepted. Do not change a candidate's status witho
 | [Security](docs/security.md) | Network and privacy boundaries |
 | [Third-party notices](docs/third-party-notices.md) | Upstream source attribution and license context |
 | [Phase 3 report](docs/phase-3-verification-report.md) | Actual findings and blockers for the 100-lead batch |
-| [Phase 4 research plan](docs/phase-4-research-plan.md) | Bounded documentary review plan; no candidate research or endpoint tests have started |
+| [Phase 4 research plan](docs/phase-4-research-plan.md) | Bounded documentary review plan and progress checkpoints |
+| [Phase 4 consolidated evidence map #1–#30](docs/research/phase-4-consolidated-evidence-map-1-30.md) | Candidate-by-candidate findings, status indicators, evidence links, overlaps, categories, workflow states, suitability and limitations |
+| [Evidence map JSON](docs/research/phase-4-consolidated-evidence-map-1-30.json) | Full evidence registry, workflow event history, normalized findings and reference IDs |
+| [Human-approval queue #1–#30](docs/research/phase-4-human-approval-queue-1-30.md) | 28 saved workflows at `human_approval / not_started`; decisions remain unmade |
+| [Unresolved issues #1–#30](docs/research/phase-4-unresolved-issues-1-30.md) | Unknowns, conflicts, date-provenance issue, and deferred candidates |
+| [Consolidated audit #1–#30](docs/research/phase-4-consolidated-audit-report-1-30.md) | Preservation hashes, exact counts, workflow/evidence integrity, QA and limitations |
+| [Repository preservation report](docs/research/phase-4-repository-preservation-report-2026-11-14.md) | Fresh-fetch/branch comparison and preserved baseline before consolidation |
 
 For a bug or feature request, use the repository's [issue templates](.github/ISSUE_TEMPLATE/). For a possible security vulnerability, follow [`SECURITY.md`](SECURITY.md) and avoid posting secrets or exploit details in a public issue.

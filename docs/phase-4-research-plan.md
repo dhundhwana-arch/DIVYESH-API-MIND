@@ -2,7 +2,7 @@
 
 - **Plan date:** 2026-11-12
 - **Prepared after:** Mission 04 preservation commit `8ae2641fddd72e1675d345f1e1938f4bca88a696` was pushed to the active branch and confirmed equal to `origin` with `git ls-remote`.
-- **Research status (checkpoint):** in progress. The Mission 07 report records candidates #11–#20; the Mission 09 #21–#30 report records the next ten-candidate documentary review. Nine new workflows reached `human_approval` without proposals; City Context (#30) is deferred at license review because provider-domain pages were inaccessible and current legal terms remain unknown.
+- **Research status (checkpoint):** documentary source review is recorded for #1–#29; City Context (#30) has only non-primary page-access observations and remains deferred. Mission 08 consolidated exactly #1–#30 from the original and working batches without repeating source research or changing workflow history; see the [consolidated map](research/phase-4-consolidated-evidence-map-1-30.md), [JSON registry](research/phase-4-consolidated-evidence-map-1-30.json), [human queue](research/phase-4-human-approval-queue-1-30.md), [unresolved issues](research/phase-4-unresolved-issues-1-30.md), and [audit](research/phase-4-consolidated-audit-report-1-30.md). The saved review-date fields say 2026-11-12 while prior commits/source-review context indicate 2026-11-14; chronology is explicitly unresolved and prior hash-linked dates remain unchanged.
 
 ## Objective and scope
 
@@ -86,6 +86,10 @@ Batch #11–#20 was reviewed from provider-controlled documentary sources, appen
 ## Mission 09 execution checkpoint — 2026-11-12
 
 Candidates #21–#30 were reviewed using official provider/repository materials where available. The working batch received 66 appended evidence records (63 primary, three non-primary page-access observations) and 100 findings (62 verified, 38 inconclusive). Nine candidates (#21–#29) reached `human_approval` with no proposal; City Context (#30) remains deferred at `license_review` with all unresolved findings `UNKNOWN`/`NOT_TESTED`, because provider homepage/reference/API-page fetches returned HTTP 500 and current terms were not established. A page-fetch error is not evidence that the service is closed. All 100 accessibility findings remain `NOT_TESTED`; no endpoints or live APIs were called, no accounts/credentials or paid access were used, and no candidate was proposed or accepted. The accepted catalog, `census-data`, and the separate OpenWeatherMap sibling were unchanged. See the [#21–#30 batch report](research/phase-4-batch-21-30-report-2026-11-12.md) for per-candidate evidence and limitations.
+
+## Mission 08 consolidation checkpoint — 2026-11-14
+
+The exact original source-batch ranks #1–#30 were reconciled to the saved working review batch by rank and `candidate_id`; the evidence map includes candidate findings, source links, source taxonomy/functional categories, workflow history, overlaps, approval queue, unresolved issues and documentary-suitability caveats. The machine-readable file includes all 261 in-scope evidence records and 793 workflow events so their IDs/hashes resolve without changing the source batch. Twenty-eight workflows remain at `human_approval / not_started`; #14 ClickMeter and #30 City Context remain deferred at `license_review`. All 30 accessibility findings remain `NOT_TESTED`; no candidate endpoints were called, proposals/approvals/acceptances made, or accepted-catalog entries changed. The stored `observed_on`/`recorded_on` values conflict with prior commit/review timestamps; this audit did not rewrite historical dates or break the hash chain. See the [consolidated audit report](research/phase-4-consolidated-audit-report-1-30.md) for exact counts, preserved hashes and QA outcomes.
 
 ## Related records
 

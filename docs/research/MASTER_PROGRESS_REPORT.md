@@ -1,17 +1,19 @@
 # Master Progress Report — DIVYESH API MIND
 
-- **Checkpoint date:** 2026-11-12
-- **Mission:** 09 — Phase 4 documentary review of candidates #21–#30
+- **Checkpoint date:** 2026-11-14
+- **Mission:** 08 — Phase 4 consolidation of candidates #1–#30
 - **Repository:** `dhundhwana-arch/DIVYESH-API-MIND`
 - **Active branch:** `arena/e2a56ea8-divyesh-api-mind`
 
 ## Current status
 
-Phase 4 provider-controlled source research is recorded for candidates **#1–#29**. The Mission 09 #21–#30 checkpoint appended 66 evidence records (63 primary and three non-primary inaccessible-page observations) and 100 findings to the separate working 100-candidate batch: 62 verified and 38 inconclusive. Nine new workflows (#21–#29) reached `human_approval` with that stage `not_started`; City Context (#30) is deferred at `license_review` because provider-domain page fetches returned HTTP 500 and current terms/rights could not be established. Candidates **#30–#100 (71 candidates)** have no primary-source review record; the City Context page-access observations are not provider findings.
+Phase 4 provider-controlled source research is recorded for candidates **#1–#29**. The Mission 09 #21–#30 checkpoint remains the source record for its ten candidates: it appended 66 evidence records (63 primary and three non-primary inaccessible-page observations) and 100 findings; nine workflows (#21–#29) reached `human_approval / not_started`, while City Context (#30) remains deferred at `license_review`. Candidates #30–#100 (71 leads) have no primary-source review record; #30 has only non-primary page-access observations.
 
-The validator's `primary_source_reviews_completed: 30` field counts completion of the official-source-identification stage, including an inconclusive source-access review for #30. The stricter `candidates_with_primary_source_review` count is 29. Across the current batch, 28 workflows are at `human_approval` without proposals; ClickMeter (#14) and City Context (#30) are deferred at `license_review`. Human approval itself has not been requested or recorded.
+Mission 08 consolidated exactly source-batch ranks **#1–#30**, matching rank, ID and product names between the preserved original and working batches. The slice has 261 evidence records (219 primary, 42 non-primary), 793 workflow events and 300 findings; 28 workflows are at `human_approval / not_started`, and ClickMeter (#14) plus City Context (#30) remain deferred. See the [consolidated map](phase-4-consolidated-evidence-map-1-30.md), [machine-readable registry](phase-4-consolidated-evidence-map-1-30.json), [human queue](phase-4-human-approval-queue-1-30.md), [unresolved issues](phase-4-unresolved-issues-1-30.md), and [audit report](phase-4-consolidated-audit-report-1-30.md).
 
-Research remained documentary-only. All 100 candidate accessibility findings remain `NOT_TESTED`; there are zero endpoint probes, live candidate API calls, proposals, human approvals, and catalog acceptances. The accepted API catalog was not changed; the Census `census-data` record and separate OpenWeatherMap sibling candidate remain intact.
+The validator's `primary_source_reviews_completed: 30` field counts official-source-identification stage completion, including #30's inconclusive source-access review; the stricter candidate-with-primary-evidence count is 29. Across #1–#30, saved workflow findings total 196 verified and 104 inconclusive; all 30 accessibility values remain `NOT_TESTED`. The date audit found saved `observed_on`/`recorded_on` values uniformly dated 2026-11-12 while the prior review commits and handoff place some source work on 2026-11-14; chronology is marked `INCONCLUSIVE` and historical event/evidence dates were not rewritten.
+
+Research and this consolidation remained documentary-only. There were zero candidate endpoint probes/live API calls during this consolidation, zero proposals, approvals or catalog acceptances. The original source batch, pilot and accepted catalog remain unchanged; Census `census-data` and the separate OpenWeatherMap/Open-Meteo sibling records remain separate.
 
 ## Phase 0 — repository preservation and synchronization
 
@@ -79,8 +81,9 @@ No API-engine implementation change was warranted for this documentary batch: ev
 | Pilot | #1–#5 | Complete; approved pilot preserved separately | No repeat review |
 | Batch 1 | #6–#10 | Complete; source-linked reviews in working batch | No repeat review |
 | Batch 2 | #11–#20 | Source identification complete; 9 at human approval, #14 deferred at license review | No repeat review; keep #14 deferred |
-| Batch 3 | #21–#30 | Complete documentary pass; #21–#29 at human approval, #30 deferred at license review | Checkpoint changes, then continue |
-| Batches 4–10 | #31–#100 | Pending | Continue #31–#40 next; preserve `UNKNOWN` where warranted |
+| Batch 3 | #21–#30 | Complete documentary pass; #21–#29 at human approval, #30 deferred at license review | No repeat research |
+| Mission 08 consolidation | #1–#30 | Complete; 261 evidence records and 793 existing transition events consolidated; no batch findings/history changed | Preserve map; keep #14/#30 deferred |
+| Batches 4–10 | #31–#100 | Pending | Separate future checkpoint; preserve `UNKNOWN` where warranted |
 
 ## Safety and decision boundaries
 
