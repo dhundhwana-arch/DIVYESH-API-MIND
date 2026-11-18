@@ -32,6 +32,21 @@ from .exceptions import (
     UnsafeRequestError,
 )
 from .mcp import MCPRegistry
+from .intelligence import IntelligenceHub
+from .local_ai import LocalRuntimeError, OllamaLocalClient, detect_hardware, estimate_model_memory
+from .research import (
+    ResearchError,
+    TechnologyResearchPipeline,
+    append_research_review_event,
+    canonical_sha256,
+    create_github_discovery_record,
+    load_github_targets,
+    merge_discovery_records,
+    new_research_review_ledger,
+    validate_research_review_ledger,
+    validate_technology_discovery,
+)
+from .vault import KeyVault, VaultError, compose_environment, default_vault_path, load_env_file
 from .transport import HTTPResult, SafeHTTPTransport, build_url
 from .validation import MCP_STATES, STATUS_VALUES, validate_catalog_data, validate_catalog_directory
 from .verification import (
@@ -109,5 +124,25 @@ __all__ = [
     "HealthCheckUnavailable",
     "UnknownRecordError",
     "UnsafeRequestError",
+    "IntelligenceHub",
+    "ResearchError",
+    "TechnologyResearchPipeline",
+    "create_github_discovery_record",
+    "merge_discovery_records",
+    "load_github_targets",
+    "canonical_sha256",
+    "validate_technology_discovery",
+    "new_research_review_ledger",
+    "append_research_review_event",
+    "validate_research_review_ledger",
+    "KeyVault",
+    "VaultError",
+    "default_vault_path",
+    "load_env_file",
+    "compose_environment",
+    "LocalRuntimeError",
+    "OllamaLocalClient",
+    "detect_hardware",
+    "estimate_model_memory",
 ]
 __version__ = "0.1.0"

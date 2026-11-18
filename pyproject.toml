@@ -30,6 +30,7 @@ apimind = "divyesh_api_mind.cli:main"
 
 [project.optional-dependencies]
 test = ["pytest>=8"]
+security = ["cryptography>=42"]
 discovery-yaml = ["PyYAML>=6"]
 
 [project.urls]

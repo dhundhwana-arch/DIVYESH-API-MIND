@@ -1,6 +1,6 @@
 # Current project status
 
-- **Status date:** 2026-11-12
+- **Status date:** 2026-11-18
 - **Active branch:** `arena/e2a56ea8-divyesh-api-mind`
 - **Branch base at Mission 04 audit:** `a219f1760f9ff8ec63002fb5d8d9bf01e512984b`
 
@@ -35,7 +35,7 @@ The accepted catalog counts and candidate counts describe local data snapshots. 
 
 ## Current quality status
 
-The historical Mission 04 QA record and the Mission 09 #21–#30 rerun are in [`TEST_EVIDENCE.md`](TEST_EVIDENCE.md). The current batch and catalogs validate; the full suite passed (75 tests and 13 subtests), compileall passed, and `git diff --check` passed. Validation commands use local data/mocked transports; they did not contact candidate endpoints. The separate three-entry historical live-probe record documents unrelated prior provider reads.
+The Mission 04 QA and Mission 09 #21–#30 runs remain historical; see [`TEST_EVIDENCE.md`](TEST_EVIDENCE.md) for dates and scope. The final integrated delivery rerun on 2026-11-18 passed **110 tests plus 13 subtests**, including **35 Mission 09 offline/mocked tests**; compileall, catalogs/queues, all three preserved verification batches, package build and isolated wheel import passed. The source-level security review and `detect-secrets==1.5.0 --no-verify` scan are documented in the final delivery evidence; the scan's 7 heuristic matches in 2 files were manually reviewed and no verifier/network plugin ran. No provider endpoints, GitHub metadata collector, MCP server, or Ollama runtime were contacted. The separate three-entry historical live-probe record documents unrelated prior provider reads.
 
 The root MIT license is for the project code/material it covers. Discovery sources carry separate attribution/license context in [`../third-party-notices.md`](../third-party-notices.md). No package publication, CI workflow, coverage percentage, or external endorsement is asserted.
 
@@ -52,3 +52,16 @@ Phase 4 documentary research and Mission 08 consolidation are recorded under the
 - [Phase 3 findings report](../phase-3-verification-report.md)
 - [Phase 4 research plan](../phase-4-research-plan.md)
 - [Current validation evidence](TEST_EVIDENCE.md)
+- [Mission 09 implementation and research status](../research/mission-09-implementation-report.md)
+
+## Mission 09 intelligence platform checkpoint — 2026-11-12
+
+- Work remains on `arena/e2a56ea8-divyesh-api-mind`; the synchronized baseline is `5770735eb8a93a9a9836c6556fe16c1abb6db21d`, matching the fetched remote-tracking ref at the last comparison. No branch switch, commit, or push was made for this implementation checkpoint.
+- The earlier implementation checkpoint recorded stash `c585b8efc37d2bd39db6b15a12d2a2d4d7a7d7b8` as preserved. The final-delivery preflight in this checkout reported an empty `git stash list`; no stash was created, applied, dropped, or deleted during final integration. Existing accepted catalogs, Mission 08 evidence/review/history artifacts, and hash-linked events were not edited.
+- Implemented offline `IntelligenceHub`, a GitHub-repository-metadata-only opt-in lead collector, manual source-evidence append, separate SHA-256-linked human claim-review ledger, optional AES-GCM/scrypt local vault, hardware estimator, and loopback-only Ollama client, with CLI and top-level SDK exports.
+- **Current snapshot counts:** 26 APIs, 5 models, 8 datasets, 6 MCP metadata (5 directory entries, 1 reviewed repository, 0 working integrations), 2,964 general candidates, 3 OpenAPI review candidates; no Mission 09 discovery/evidence/review data seeded (0 / 0 / 0).
+- **Latest quality run:** 109 pytest tests passed plus 13 subtests; 34 Mission 09-specific mocked/offline tests; compileall, catalog/queue validation, all three preserved verification batches, package build, isolated wheel import, and `git diff --check` passed. `detect-secrets 1.5.0 --no-verify` reported 8 manually reviewed heuristic matches in 3 files (placeholders, field names, and deliberately fake test credentials); no network verifier ran.
+- **Protected hashes** remain unchanged: API catalog `6a6e3d6ed2a3b638edc7767143aa209af84ab4b0b02616585699c30cbb601219`; original verification source batch `c07781393d477369156beceb03dd2137a6b360966b4a8f92fc7e0ae0c1193085`; Phase 4 pilot `5d68dbeee2ec646c060c3c361cbb800cd29e836284af4e59eb27e96ebb99d999`; Phase 4 review batch `a22fe4edf469ff73e5f0405232406e1a50908e2b1a7410901cd5819ada1cf135`.
+- No external page was fetched, and no GitHub metadata collection, provider/product endpoint probe, candidate endpoint probe, or Ollama call was made. The collector is implemented but deliberately unrun; broad official-source research, category-specific data population, multi-platform compatibility, and independent vault security review remain partial/not started. Mission 08 consolidation dates remain 2026-11-14; historical evidence/event dates remain 2026-11-12 as recorded.
+
+See the [Mission 09 implementation report](../research/mission-09-implementation-report.md) for scope labels and the one prioritized remaining-work list.

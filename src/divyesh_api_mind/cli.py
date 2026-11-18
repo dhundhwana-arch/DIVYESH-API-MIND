@@ -5,8 +5,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import sys
+import tempfile
 from datetime import date
+from getpass import getpass
 from pathlib import Path
 from typing import Sequence
 
@@ -21,8 +24,18 @@ from .discovery import (
     search_review_queue,
 )
 from .exceptions import APIMindError
+from .intelligence import IntelligenceHub
+from .local_ai import OllamaLocalClient, detect_hardware, estimate_model_memory
 from .mcp import MCPRegistry
+from .research import (
+    TechnologyResearchPipeline,
+    append_research_review_event,
+    load_github_targets,
+    validate_research_review_ledger,
+    validate_technology_discovery,
+)
 from .validation import STATUS_VALUES, validate_catalog_directory
+from .vault import KeyVault, compose_environment
 from .verification import (
     FINDING_STAGE,
     TRANSITION_OUTCOMES,
@@ -55,6 +68,33 @@ def _json_print(value: object) -> None:
     print(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True))
 
 
+def _tri_option(value: str | None) -> bool | None:
+    if value is None:
+        return None
+    return value == "yes"
+
+
+def _check_research_output_path(
+    output: str | Path,
+    catalog_dir: Path,
+    target_file: str | Path,
+    *,
+    expected_name: str = "technology_discovery.json",
+) -> Path:
+    target = Path(output).expanduser()
+    if target.is_symlink():
+        raise ValueError("research output must not be a symbolic link")
+    if target.name != expected_name:
+        raise ValueError(f"research output must be named {expected_name}; historical artifacts are protected")
+    resolved = target.resolve()
+    protected = {(catalog_dir / f"{kind}.json").resolve() for kind in _CATALOG_KINDS}
+    protected.update(path.resolve() for path in catalog_dir.glob("*candidates.json"))
+    protected.add(Path(target_file).expanduser().resolve())
+    if resolved in protected:
+        raise ValueError("research output cannot overwrite an accepted catalog, review queue, or input file")
+    return resolved
+
+
 def _print_validation(directory: Path) -> int:
     results = validate_catalog_directory(directory)
     failed = False
@@ -76,6 +116,40 @@ def _print_validation(directory: Path) -> int:
             print(f"  - {exc}")
         else:
             print(f"{queue_path.name}: valid ({queue['counts']['unique_candidates']} review candidates; not promoted)")
+    research_path = directory / "technology_discovery.json"
+    if research_path.exists():
+        try:
+            research = _read_json_document(research_path)
+            errors = validate_technology_discovery(research)
+        except (ValueError, OSError) as exc:
+            failed = True
+            print(f"{research_path.name}: INVALID")
+            print(f"  - {type(exc).__name__}")
+        else:
+            if errors:
+                failed = True
+                print(f"{research_path.name}: INVALID")
+                for error in errors:
+                    print(f"  - {error}")
+            else:
+                print(f"{research_path.name}: valid ({len(research['records'])} discovery-only leads; not promoted)")
+    review_path = directory / "technology_research_reviews.json"
+    if review_path.exists():
+        try:
+            reviews = _read_json_document(review_path)
+            errors = validate_research_review_ledger(reviews)
+        except (ValueError, OSError) as exc:
+            failed = True
+            print(f"{review_path.name}: INVALID")
+            print(f"  - {type(exc).__name__}")
+        else:
+            if errors:
+                failed = True
+                print(f"{review_path.name}: INVALID")
+                for error in errors:
+                    print(f"  - {error}")
+            else:
+                print(f"{review_path.name}: valid ({len(reviews['events'])} hash-linked human claim decisions; no promotion)")
     return 1 if failed else 0
 
 
@@ -166,10 +240,33 @@ def _write_or_print(content: str, output: str | None) -> None:
     Path(output).write_text(content, encoding="utf-8")
 
 
+def _write_json_atomic(path: Path, value: object) -> None:
+    if path.is_symlink():
+        raise ValueError("research output must not be a symbolic link")
+    temp: Path | None = None
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=path.parent, prefix=f".{path.name}.", suffix=".tmp", delete=False) as stream:
+            temp = Path(stream.name)
+            json.dump(value, stream, ensure_ascii=False, indent=2, sort_keys=True)
+            stream.write("\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temp, path)
+        temp = None
+    except (OSError, TypeError, ValueError):
+        try:
+            if temp is not None and temp.exists():
+                temp.unlink()
+        except OSError:
+            pass
+        raise ValueError("research output could not be written safely") from None
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="apimind",
-        description="Inspect local DIVYESH API MIND catalogs. Network use is explicit via docs --fetch, health-check, and discover-import --url.",
+        description="Inspect local DIVYESH API MIND catalogs. Network use is explicit via docs --fetch, health-check, discover-import --url, and research-discover-github.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -328,6 +425,93 @@ def build_parser() -> argparse.ArgumentParser:
     mcp_parser.add_argument("--status", choices=("directory_entry", "reviewed_repository", "working_integration"))
     mcp_parser.add_argument("--query")
 
+    hub_search = subparsers.add_parser("hub-search", help="unified offline search across accepted catalogs, MCP metadata, and discovery-only technology leads")
+    _add_catalog_dir(hub_search)
+    hub_search.add_argument("--category")
+    hub_search.add_argument("--capability")
+    hub_search.add_argument("--provider")
+    hub_search.add_argument("--access", help="free, FREE_NO_KEY, FREE_TIER_LIMITED, PAID, UNKNOWN, etc.")
+    hub_search.add_argument("--free-status", choices=sorted(STATUS_VALUES))
+    hub_search.add_argument("--kind", help="api, model, dataset, mcp, tool, local_runtime, etc.")
+    hub_search.add_argument("--query")
+    hub_search.add_argument("--api-key-required", choices=("yes", "no"))
+    hub_search.add_argument("--keyless", choices=("yes", "no"))
+    hub_search.add_argument("--unlimited", choices=("yes", "no"), help="yes matches only explicit UNLIMITED evidence; missing limits stay UNKNOWN")
+    hub_search.add_argument("--open-source", choices=("yes", "no"))
+    hub_search.add_argument("--python-sdk", choices=("yes", "no"))
+    hub_search.add_argument("--commercial-use", choices=("yes", "no"))
+    hub_search.add_argument("--language")
+    hub_search.add_argument("--local", choices=("yes", "no"))
+    hub_search.add_argument("--record-state", choices=("ACCEPTED_CATALOG", "MCP_METADATA", "DISCOVERY_ONLY"))
+    hub_search.add_argument("--accepted-only", action="store_true", help="exclude discovery-only leads; MCP metadata remains labeled separately")
+    hub_search.add_argument("--limit", type=int)
+
+    hub_recommend = subparsers.add_parser("hub-recommend", help="rank documentary matches with evidence and limitations; performs no calls")
+    _add_catalog_dir(hub_recommend)
+    hub_recommend.add_argument("--capability", required=True)
+    hub_recommend.add_argument("--access")
+    hub_recommend.add_argument("--keyless", choices=("yes", "no"))
+    hub_recommend.add_argument("--local", choices=("yes", "no"))
+    hub_recommend.add_argument("--commercial-use", choices=("yes", "no"))
+    hub_recommend.add_argument("--accepted-only", action="store_true")
+    hub_recommend.add_argument("--limit", type=int, default=5)
+
+    research_discover = subparsers.add_parser("research-discover-github", help="explicitly fetch public GitHub repository metadata only; leads remain UNKNOWN and unpromoted")
+    research_discover.add_argument("--targets", required=True, help="local JSON target list; only api.github.com repository metadata will be fetched")
+    research_discover.add_argument("--output", required=True, help="separate technology_discovery.json output; accepted catalogs are protected")
+    research_discover.add_argument("--checked-on", help="research observation date YYYY-MM-DD; defaults to the local current date")
+    research_discover.add_argument("--timeout", type=float, default=12.0)
+    research_validate = subparsers.add_parser("research-validate", help="validate the separate discovery-only technology catalog offline")
+    research_validate.add_argument("input")
+    research_evidence = subparsers.add_parser("research-evidence-add", help="append official-source evidence to a discovery-only record; does not update claims or promote it")
+    _add_catalog_dir(research_evidence)
+    research_evidence.add_argument("--record-id", required=True)
+    research_evidence.add_argument("--evidence", required=True, help="local JSON source observation (URL, checked date, supported claims, and snapshot)")
+    research_evidence.add_argument("--discovery", help="existing technology_discovery.json; defaults to --catalog-dir/technology_discovery.json")
+    research_evidence.add_argument("--output", help="must be named technology_discovery.json; defaults to --discovery")
+    research_review = subparsers.add_parser("research-review-claim", help="append one explicit human claim decision to a separate hash-linked review ledger; never promotes")
+    _add_catalog_dir(research_review)
+    research_review.add_argument("--record-id", required=True)
+    research_review.add_argument("--field", required=True)
+    research_review.add_argument("--raw-value-json", required=True)
+    research_review.add_argument("--normalized-value-json", required=True)
+    research_review.add_argument("--decision", choices=("SUPPORTS", "CONTRADICTS", "CONFLICTING", "INSUFFICIENT", "INCONCLUSIVE"), required=True)
+    research_review.add_argument("--evidence-id", action="append", required=True)
+    research_review.add_argument("--reviewer", required=True)
+    research_review.add_argument("--notes", required=True)
+    research_review.add_argument("--confidence", type=float, required=True)
+    research_review.add_argument("--recorded-on")
+    research_review.add_argument("--discovery", help="existing technology_discovery.json; defaults to --catalog-dir/technology_discovery.json")
+    research_review.add_argument("--ledger", help="existing review ledger; defaults to --catalog-dir/technology_research_reviews.json")
+    research_review.add_argument("--output", help="must be named technology_research_reviews.json; defaults to --ledger")
+    research_review_validate = subparsers.add_parser("research-review-validate", help="validate the append-only research claim review hash chain offline")
+    research_review_validate.add_argument("input")
+
+    vault_parser = subparsers.add_parser("vault", help="manage user-owned keys in an optional encrypted local vault; values are never printed")
+    vault_parser.add_argument("--path", help="vault path (default: $XDG_CONFIG_HOME/divyesh-api-mind/keys.vault)")
+    vault_actions = vault_parser.add_subparsers(dest="vault_action", required=True)
+    vault_actions.add_parser("status", help="show file/permission status only")
+    vault_actions.add_parser("list", help="unlock and list environment-variable names only")
+    vault_set = vault_actions.add_parser("set", help="add or rotate one user-owned key; prompts without echo")
+    vault_set.add_argument("name", help="environment-variable name, not the key value")
+    vault_delete = vault_actions.add_parser("delete", help="delete one key after unlocking and confirming")
+    vault_delete.add_argument("name")
+    vault_actions.add_parser("rekey", help="change the user-supplied vault passphrase")
+
+    config_check = subparsers.add_parser("config-check", help="check configured key-variable presence without showing values")
+    _add_catalog_dir(config_check)
+    config_check.add_argument("--env-file", help="optional explicitly named .env file; never auto-loaded")
+    config_check.add_argument("--use-vault", action="store_true", help="explicitly unlock the optional local key vault for presence checks; values are never displayed")
+    config_check.add_argument("--vault-path", help="key vault file path used with --use-vault")
+
+    hardware_parser = subparsers.add_parser("local-hardware", help="inspect basic local CPU/RAM/disk; GPU stays UNKNOWN unless separately assessed")
+    hardware_parser.add_argument("--model-size-gib", type=float, help="optional rough memory-budget estimate; not a compatibility test")
+    local_list = subparsers.add_parser("local-ollama-list", help="explicitly query the already-running loopback-only Ollama model list")
+    local_list.add_argument("--timeout", type=float, default=30.0)
+    local_chat = subparsers.add_parser("local-ollama-chat", help="send stdin text to an already-running loopback-only Ollama model; no downloads or hosted fallback")
+    local_chat.add_argument("model")
+    local_chat.add_argument("--timeout", type=float, default=30.0)
+
     return parser
 
 
@@ -354,6 +538,17 @@ def main(argv: Sequence[str] | None = None) -> int:
                 candidate_counts[candidate_path.name] = load_review_queue(candidate_path)["counts"]
             if candidate_counts:
                 result["discovery_candidates"] = candidate_counts
+            research_path = directory / "technology_discovery.json"
+            if research_path.exists():
+                research = _read_json_document(research_path)
+                errors = validate_technology_discovery(research)
+                if errors:
+                    raise ValueError(f"technology discovery catalog invalid: {errors[0]}")
+                result["technology_discovery_only"] = {
+                    "records": len(research["records"]),
+                    "not_promoted": True,
+                    "free_status": "UNKNOWN for all GitHub-only leads",
+                }
             _json_print(result)
             return 0
         if args.command == "search":
@@ -370,6 +565,27 @@ def main(argv: Sequence[str] | None = None) -> int:
                     limit=args.limit,
                 )
             )
+            return 0
+        if args.command == "hub-search":
+            hub = IntelligenceHub(catalog_dir=directory, include_discovery=not args.accepted_only)
+            _json_print(hub.search(
+                category=args.category, capability=args.capability, provider=args.provider,
+                access=args.access, free_status=args.free_status, kind=args.kind, query=args.query,
+                api_key_required=_tri_option(args.api_key_required), keyless=_tri_option(args.keyless),
+                unlimited=_tri_option(args.unlimited), open_source=_tri_option(args.open_source),
+                python_sdk=_tri_option(args.python_sdk), commercial_use=_tri_option(args.commercial_use),
+                language=args.language, local=_tri_option(args.local), record_state=args.record_state,
+                include_discovery=not args.accepted_only, limit=args.limit,
+            ))
+            return 0
+        if args.command == "hub-recommend":
+            hub = IntelligenceHub(catalog_dir=directory, include_discovery=not args.accepted_only)
+            _json_print(hub.recommend(
+                capability=args.capability, access=args.access,
+                keyless=_tri_option(args.keyless), local=_tri_option(args.local),
+                commercial_use=_tri_option(args.commercial_use),
+                include_discovery=not args.accepted_only, limit=args.limit,
+            ))
             return 0
         if args.command == "docs":
             mind = APIMind(catalog_dir=directory)
@@ -455,6 +671,199 @@ def main(argv: Sequence[str] | None = None) -> int:
                     existing_records=existing,
                 )
             _write_or_print(json.dumps(queue, ensure_ascii=False, indent=2, sort_keys=True) + "\n", args.output)
+            return 0
+        if args.command == "research-discover-github":
+            targets_path = Path(args.targets).expanduser().resolve()
+            output_path = _check_research_output_path(args.output, directory, targets_path)
+            if output_path == targets_path:
+                raise ValueError("research output must not overwrite the target list")
+            checked_on = _canonical_cli_date(args.checked_on).isoformat()
+            targets = load_github_targets(targets_path)
+            if output_path.exists():
+                existing = _read_json_document(output_path)
+                existing_errors = validate_technology_discovery(existing)
+                if existing_errors:
+                    raise ValueError(f"existing discovery output is invalid and was not overwritten: {existing_errors[0]}")
+            else:
+                existing = None
+            old_records = len(existing["records"]) if isinstance(existing, dict) else 0
+            old_evidence = sum(len(item["evidence"]) for item in existing["records"]) if isinstance(existing, dict) else 0
+            pipeline = TechnologyResearchPipeline(timeout=args.timeout)
+            document, errors = pipeline.discover_github_targets(targets, checked_on=checked_on, existing=existing)
+            new_records = len(document["records"])
+            new_evidence = sum(len(item.get("evidence", [])) for item in document["records"])
+            _write_json_atomic(output_path, document)
+            _json_print({
+                "output": str(output_path), "records_before": old_records, "records_after": new_records,
+                "evidence_before": old_evidence, "evidence_after": new_evidence,
+                "target_count": len(targets), "source_host": "api.github.com",
+                "provider_product_endpoints_called": 0, "automatic_promotion": False,
+                "errors": errors,
+            })
+            return 1 if errors else 0
+        if args.command == "research-validate":
+            document = _read_json_document(args.input)
+            errors = validate_technology_discovery(document)
+            _json_print({"valid": not errors, "records": len(document.get("records", [])) if isinstance(document, dict) and isinstance(document.get("records"), list) else None, "errors": errors})
+            return 1 if errors else 0
+        if args.command == "research-evidence-add":
+            discovery_path = Path(args.discovery).expanduser() if args.discovery else directory / "technology_discovery.json"
+            evidence_path = Path(args.evidence).expanduser().resolve()
+            document = _read_json_document(discovery_path)
+            discovery_errors = validate_technology_discovery(document)
+            if discovery_errors:
+                raise ValueError(f"technology discovery catalog is invalid: {discovery_errors[0]}")
+            evidence_input = _read_json_document(evidence_path)
+            if not isinstance(evidence_input, dict):
+                raise ValueError("evidence input must be a JSON object")
+            records = document["records"]
+            matches = [item for item in records if item["id"] == args.record_id]
+            if len(matches) != 1:
+                raise ValueError("record ID does not identify one discovery-only record")
+            appended = TechnologyResearchPipeline.append_evidence(
+                matches[0], evidence_type=evidence_input.get("evidence_type"),
+                source_url=evidence_input.get("source_url"), checked_on=evidence_input.get("checked_on"),
+                claims_supported=evidence_input.get("claims_supported"), snapshot=evidence_input.get("snapshot"),
+                primary_source=evidence_input.get("primary_source"),
+            )
+            updated_document = dict(document)
+            updated_records = list(records)
+            updated_records[records.index(matches[0])] = appended
+            updated_document["records"] = updated_records
+            output_path = _check_research_output_path(
+                args.output or discovery_path, directory, evidence_path, expected_name="technology_discovery.json"
+            )
+            if output_path.exists() and output_path != discovery_path.resolve():
+                prior = _read_json_document(output_path)
+                errors = validate_technology_discovery(prior)
+                if errors:
+                    raise ValueError(f"existing discovery output is invalid and was not overwritten: {errors[0]}")
+                if prior != document:
+                    raise ValueError("refusing to overwrite a different existing discovery history; use its path as --discovery")
+            _write_json_atomic(output_path, updated_document)
+            _json_print({"output": str(output_path), "record_id": args.record_id, "evidence_id": appended["evidence_refs"][-1], "claims_normalized": False, "automatic_promotion": False})
+            return 0
+        if args.command == "research-review-claim":
+            discovery_path = Path(args.discovery).expanduser() if args.discovery else directory / "technology_discovery.json"
+            discovery_document = _read_json_document(discovery_path)
+            discovery_errors = validate_technology_discovery(discovery_document)
+            if discovery_errors:
+                raise ValueError(f"technology discovery catalog is invalid: {discovery_errors[0]}")
+            if args.ledger:
+                ledger_path = Path(args.ledger).expanduser()
+            elif args.output:
+                ledger_path = Path(args.output).expanduser()
+            else:
+                ledger_path = directory / "technology_research_reviews.json"
+            ledger = _read_json_document(ledger_path) if ledger_path.exists() else None
+            try:
+                raw_value = json.loads(args.raw_value_json)
+                normalized_value = json.loads(args.normalized_value_json)
+            except json.JSONDecodeError:
+                raise ValueError("claim values must be valid JSON") from None
+            recorded_on = _canonical_cli_date(args.recorded_on).isoformat()
+            updated_ledger = append_research_review_event(
+                ledger, discovery_document=discovery_document, record_id=args.record_id, field=args.field,
+                raw_value=raw_value, normalized_value=normalized_value, decision=args.decision,
+                evidence_refs=args.evidence_id, reviewer=args.reviewer, notes=args.notes,
+                confidence=args.confidence, recorded_on=recorded_on,
+            )
+            output_path = _check_research_output_path(
+                args.output or ledger_path, directory, discovery_path, expected_name="technology_research_reviews.json"
+            )
+            if output_path.exists() and output_path != ledger_path.resolve():
+                prior = _read_json_document(output_path)
+                errors = validate_research_review_ledger(prior)
+                if errors:
+                    raise ValueError(f"existing review ledger is invalid and was not overwritten: {errors[0]}")
+                if prior != ledger:
+                    raise ValueError("refusing to overwrite a different review history; append to its existing --ledger path")
+            _write_json_atomic(output_path, updated_ledger)
+            event = updated_ledger["events"][-1]
+            _json_print({"output": str(output_path), "event_id": event["event_id"], "event_sha256": event["event_sha256"], "sequence": event["sequence"], "accepted_catalog_modified": False})
+            return 0
+        if args.command == "research-review-validate":
+            ledger = _read_json_document(args.input)
+            errors = validate_research_review_ledger(ledger)
+            _json_print({"valid": not errors, "events": len(ledger.get("events", [])) if isinstance(ledger, dict) and isinstance(ledger.get("events"), list) else None, "errors": errors})
+            return 1 if errors else 0
+        if args.command == "vault":
+            vault = KeyVault(args.path)
+            if args.vault_action == "status":
+                _json_print(vault.status())
+                return 0
+            if args.vault_action == "list":
+                passphrase = getpass("Vault master passphrase (input hidden): ")
+                _json_print({"key_names": vault.list_names(passphrase), "secret_values_displayed": False})
+                return 0
+            if args.vault_action == "set":
+                if vault.path.exists():
+                    passphrase = getpass("Vault master passphrase (input hidden): ")
+                else:
+                    passphrase = getpass("Create a master passphrase of at least 12 characters (input hidden): ")
+                    if passphrase != getpass("Confirm master passphrase (input hidden): "):
+                        raise ValueError("master passphrases did not match")
+                value = getpass(f"Value for {args.name} (input hidden): ")
+                if value != getpass("Confirm key value (input hidden): "):
+                    raise ValueError("key values did not match")
+                vault.set(args.name, value, passphrase)
+                _json_print({"saved": True, "name": args.name, "secret_value_displayed": False})
+                return 0
+            if args.vault_action == "delete":
+                passphrase = getpass("Vault master passphrase (input hidden): ")
+                if input(f"Delete key {args.name}? [y/N] ").strip().casefold() != "y":
+                    _json_print({"deleted": False, "cancelled": True})
+                    return 0
+                vault.delete(args.name, passphrase)
+                _json_print({"deleted": True, "name": args.name, "secret_value_displayed": False})
+                return 0
+            if args.vault_action == "rekey":
+                old_passphrase = getpass("Current master passphrase (input hidden): ")
+                new_passphrase = getpass("New master passphrase (input hidden): ")
+                if new_passphrase != getpass("Confirm new master passphrase (input hidden): "):
+                    raise ValueError("new master passphrases did not match")
+                vault.rekey(old_passphrase, new_passphrase)
+                _json_print({"rekeyed": True, "secret_values_displayed": False})
+                return 0
+        if args.command == "config-check":
+            vault = KeyVault(args.vault_path) if args.use_vault else None
+            if args.vault_path and not args.use_vault:
+                raise ValueError("--vault-path requires --use-vault")
+            passphrase = getpass("Vault master passphrase (input hidden): ") if args.use_vault else None
+            environment = compose_environment(
+                process_environment=os.environ, env_file=args.env_file,
+                vault=vault, master_passphrase=passphrase,
+            )
+            records = APIMind(catalog_dir=directory).search(kind="api")
+            results = []
+            for record in records:
+                auth = record.get("authentication")
+                if not isinstance(auth, dict):
+                    continue
+                variable = auth.get("env_var")
+                if not isinstance(variable, str) or not variable:
+                    continue
+                configured = bool(environment.get(variable))
+                results.append({"record_id": record["id"], "variable_name": variable, "required": auth.get("required") is True, "configured": configured})
+            _json_print({"credentials_displayed": False, "items": results, "missing_required": [item["variable_name"] for item in results if item["required"] and not item["configured"]]})
+            return 1 if any(item["required"] and not item["configured"] for item in results) else 0
+        if args.command == "local-hardware":
+            profile = detect_hardware()
+            if args.model_size_gib is not None:
+                profile["model_memory_estimate"] = estimate_model_memory(args.model_size_gib, profile=profile)
+            _json_print(profile)
+            return 0
+        if args.command == "local-ollama-list":
+            _json_print({"origin": "loopback only", "models": OllamaLocalClient(timeout=args.timeout).list_models(), "hosted_fallback": False})
+            return 0
+        if args.command == "local-ollama-chat":
+            prompt = sys.stdin.read(256 * 1024 + 1)
+            if len(prompt.encode("utf-8")) > 256 * 1024:
+                raise ValueError("stdin prompt exceeds the 256 KiB limit")
+            if not prompt.strip():
+                raise ValueError("provide a prompt on stdin; it will be sent only to loopback Ollama")
+            response = OllamaLocalClient(timeout=args.timeout).chat(args.model, [{"role": "user", "content": prompt}])
+            _json_print({"origin": "loopback only", "response": response, "hosted_fallback": False})
             return 0
         if args.command == "review-candidates":
             queue_path = Path(args.queue) if args.queue else Path(__file__).resolve().parent / "data" / "discovery_candidates.json"
@@ -568,7 +977,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             registry = MCPRegistry(directory / "mcp_registry.json")
             _json_print(registry.list(status=args.status, query=args.query))
             return 0
-    except (APIMindError, OSError, UnicodeError, json.JSONDecodeError, ValueError, TypeError) as exc:
+    except (APIMindError, OSError, UnicodeError, json.JSONDecodeError, ValueError, TypeError, EOFError) as exc:
         print(f"apimind: {type(exc).__name__}: {exc}", file=sys.stderr)
         return 2
     return 2
